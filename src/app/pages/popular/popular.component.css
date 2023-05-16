@@ -1,0 +1,16 @@
+.popular-page-container{
+    border-top: 2px solid rgba(161, 76, 6);
+    background-image: url('../../../assets/Mono-World-Map-situ.jpg');
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.places-container{
+    margin-top: 290px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+
+}
+

@@ -1,0 +1,38 @@
+.listing-card-container{
+    height: 300px;
+    width: 220px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px -2px rgba(0,0,0,0.88);
+
+}
+
+
+.listing-card-image{
+    border-radius: 5px;
+    height: 40%;
+    background: url('../../../assets/istockphoto-1001589046-170667a.jpg'); 
+}
+.listing-card-details{
+ height: 60%;
+ display: flex;
+ flex-direction: column;
+ padding:25px;
+ box-sizing:border-box;
+}
+.listing-card-name{
+    margin-top: 5px;
+    font-weight: 700;
+}
+.listing-card-description{
+    color: grey;
+    font-size: 10px;
+
+}
+
+.listing-card-location{
+    margin-top: 20px;
+    color: grey;
+}
+.listing-card-phone{
+    color: gray;
+}

@@ -1,0 +1,15 @@
+.category-card-container{
+    background-color: white;
+    height: 120px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid rgb(197, 195, 195);
+
+}
+
+.category-icon{
+    padding: 10px;
+}

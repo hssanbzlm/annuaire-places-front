@@ -1,0 +1,12 @@
+.latest-page-container{
+    display: flex;
+    justify-content: center;
+}
+
+.latest-places-container{
+    width: 70%;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+
+}

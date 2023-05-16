@@ -1,0 +1,12 @@
+.welcom-page-container{
+    background-image: url('../../../assets/interieur-restaurant-view.jpg');
+    height: 700px;
+}
+
+.categories-page-container{
+    position: relative;
+    bottom: 25px;
+    display: flex;
+    justify-content: center;
+
+}
