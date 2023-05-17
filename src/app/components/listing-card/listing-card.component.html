@@ -1,5 +1,14 @@
 <div class="listing-card-container">
-  <div class="listing-card-image"></div>
+  <div class="listing-card-image">
+    <div class="listing-card-icons">
+      <div class="listing-card-owner">
+        <fa-icon [icon]="faUserTie" class="fa-sm"></fa-icon>
+      </div>
+      <div class="listing-card-category">
+        <fa-icon [icon]="faUtensils" class="fa-sm"></fa-icon>
+      </div>
+    </div>
+  </div>
 
   <div class="listing-card-details">
     <div class="listing-card-name">
@@ -7,7 +16,7 @@
       <fa-icon
         [icon]="faCircleCheck"
         class="fa-2xs"
-        style="color: red"
+        style="color: rgba(161, 76, 6, 0.6)"
       ></fa-icon>
     </div>
     <div class="listing-card-description">Lorem ipsum Lorem Ipsum</div>
@@ -15,12 +24,16 @@
       <fa-icon
         [icon]="faLocationDot"
         class="fa-2xs"
-        style="color: red"
+        style="color: rgba(161, 76, 6, 0.6)"
       ></fa-icon>
       80 Broklyn Street USA
     </div>
     <div class="listing-card-phone">
-      <fa-icon [icon]="faPhoneFlip" class="fa-2xs" style="color: red"></fa-icon>
+      <fa-icon
+        [icon]="faPhoneFlip"
+        class="fa-2xs"
+        style="color: rgba(161, 76, 6, 0.6)"
+      ></fa-icon>
       92 666 888 0000
     </div>
   </div>

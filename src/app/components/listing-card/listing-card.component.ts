@@ -3,6 +3,8 @@ import {
   faLocationDot,
   faCircleCheck,
   faPhoneFlip,
+  faUtensils,
+  faUserTie,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,4 +16,6 @@ export class ListingCardComponent {
   faCircleCheck = faCircleCheck;
   faLocationDot = faLocationDot;
   faPhoneFlip = faPhoneFlip;
+  faUtensils = faUtensils;
+  faUserTie = faUserTie;
 }

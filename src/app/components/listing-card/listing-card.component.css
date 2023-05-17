@@ -36,3 +36,23 @@
 .listing-card-phone{
     color: gray;
 }
+
+.listing-card-icons{
+    margin-left: 10px;
+    display: flex;
+    gap: 5px;
+    position:relative;
+    top: 107px;
+}
+
+.listing-card-owner,.listing-card-category{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: rgba(161, 76, 6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+   
+}
