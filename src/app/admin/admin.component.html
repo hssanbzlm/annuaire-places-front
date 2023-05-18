@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-auto sticky-top sidebar">
+      <div class="title">
+        <h4>ADMIN</h4>
+        <hr />
+      </div>
+      <div
+        class="d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky-top sidebar-container"
+      >
+        <ul
+          class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center"
+        >
+          <li class="nav-item">
+            <a routerLink="dashboard" class="nav-link py-3 px-2">
+              <fa-icon [icon]="faDashboard" class="fa-lg"></fa-icon>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="countries" class="nav-link py-3 px-2">
+              <fa-icon [icon]="faearthEurope" class="fa-lg"></fa-icon>
+              Countries
+            </a>
+          </li>
+          <li>
+            <a routerLink="places" class="nav-link py-3 px-2">
+              <fa-icon [icon]="famapLocationDot" class="fa-lg"></fa-icon>Places
+            </a>
+          </li>
+          <li>
+            <a routerLink="categories" class="nav-link py-3 px-2">
+              <fa-icon [icon]="faComment" class="fa-lg"></fa-icon>
+              Categories
+            </a>
+          </li>
+        </ul>
+        <div class="dropdown">
+          <a
+            href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+          >
+            <fa-icon [icon]="faUser" class="fa-lg"></fa-icon>
+          </a>
+          <ul
+            class="dropdown-menu text-small shadow"
+            aria-labelledby="dropdownUser3"
+          >
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm p-3 min-vh-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

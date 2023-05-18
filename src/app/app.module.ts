@@ -15,7 +15,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { CategoryListComponent } from './pages/category-list/category-list.component';
-
+import { AdminModule } from './admin/admin.module';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +31,16 @@ import { CategoryListComponent } from './pages/category-list/category-list.compo
     SearchBarComponent,
     CategoryCardComponent,
     CategoryListComponent,
+    HomeComponent,
+    NotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, NgbModule],
+  imports: [
+    BrowserModule,
+    FontAwesomeModule,
+    NgbModule,
+    AppRoutingModule,
+    AdminModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
