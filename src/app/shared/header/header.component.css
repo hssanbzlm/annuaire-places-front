@@ -1,7 +1,6 @@
 .head-container{
     display: flex;
     padding: 10px;
-    border-bottom: 3px solid rgba(161, 76, 6,0.6);
     background-color: black;
     color: white;
     opacity: 0.8;

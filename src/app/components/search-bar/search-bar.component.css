@@ -5,11 +5,9 @@
     align-items: center;
 }
 .attribute-appearence{
-    border: 1px solid grey;
     height: 50px;
     width: 300px;
     font-size: 14px;
-    color: grey;
     padding: 8px;
 
 }
@@ -33,7 +31,6 @@
     height: 50px;
     width: 100px;
     border-radius: 5px;
-    background-color: rgba(161, 76, 6);
     border: none;
     color: white;
 }

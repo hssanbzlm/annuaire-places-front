@@ -1,6 +1,4 @@
 .popular-page-container{
-    border-top: 2px solid rgba(161, 76, 6,0.6);
-    border-bottom: 2px solid rgba(161, 76, 6,0.6);
     background-image: url('../../../assets/Mono-World-Map-situ.jpg');
     height: 608px;
     display: flex;
@@ -23,7 +21,6 @@
 }
 
 .popular-page-text>.title{
-    color: rgb(161, 76, 6);
     font-weight: 900;
     font-size: 12px;
 }
@@ -31,7 +28,3 @@
   font-weight: 900;
   font-size: 30px;
 }
-
-.popular-page-text>.description{
-    color: grey;
-  }

@@ -24,17 +24,12 @@
     font-weight: 700;
 }
 .listing-card-description{
-    color: grey;
     font-size: 10px;
 
 }
 
 .listing-card-location{
     margin-top: 20px;
-    color: grey;
-}
-.listing-card-phone{
-    color: gray;
 }
 
 .listing-card-icons{
@@ -49,7 +44,6 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: rgba(161, 76, 6);
     display: flex;
     justify-content: center;
     align-items: center;

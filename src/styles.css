@@ -3,3 +3,39 @@ body {
     margin: 0;
     padding: 0;
   }
+
+  .main-background-color{
+    background-color: rgb(161, 76, 6);
+  }
+
+  .main-color{
+    color: rgb(161, 76, 6) ;
+  }
+  .lighten-main-background-color{
+    background-color: rgba(161, 76, 6,0.7);
+  }
+
+  .lighten-main-color{
+    color: rgba(161, 76, 6,0.7);
+  }
+
+  .border-top-1px{
+    border-top: 1px solid rgba(161, 76, 6,0.7);;
+  }
+  .border-bottom-1px{
+    border-bottom: 1px solid rgba(161, 76, 6,0.7);;
+  }
+  .border-top-3px{
+    border-top: 3px solid rgba(161, 76, 6,0.7) ;
+  }
+  .border-bottom-3px{
+    border-bottom: 3px solid rgba(161, 76, 6,0.7) ;
+  }
+
+  .secondary-color{
+    color: grey;
+  }
+
+  .secondary-border{
+    border: 1px solid grey;
+  }
