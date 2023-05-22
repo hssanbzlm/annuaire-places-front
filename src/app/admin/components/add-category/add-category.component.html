@@ -1,0 +1,71 @@
+<form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      formControlName="title"
+      type="text"
+      class="form-control mt-1"
+      placeholder="Title"
+    />
+    <span
+      *ngIf="addCategoryForm.get('title')?.dirty"
+      class="d-flex flex-column"
+    >
+      <small
+        class="form-text text-muted"
+        *ngIf="addCategoryForm.get('title')?.errors?.['required']"
+      >
+        Title is required
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCategoryForm.get('title')?.errors?.['minlength']||addCategoryForm.get('title')?.errors?.['maxlength'])"
+      >
+        Title length must be between 4 and 15
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCategoryForm.get('title')?.errors?.['pattern'])"
+      >
+        Only ltters are acceptable please
+      </small>
+    </span>
+  </div>
+  <div class="form-group mt-2">
+    <label for="type">Type</label>
+    <input
+      type="text"
+      class="form-control mt-1"
+      placeholder="Type"
+      formControlName="type"
+    />
+    <span class="d-flex flex-column" *ngIf="addCategoryForm.get('type')?.dirty">
+      <small
+        class="form-text text-muted"
+        *ngIf="addCategoryForm.get('type')?.errors?.['required']"
+      >
+        Type is required
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCategoryForm.get('type')?.errors?.['minlength']||addCategoryForm.get('type')?.errors?.['maxlength'])"
+      >
+        Type length must be between 4 and 15
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCategoryForm.get('type')?.errors?.['pattern'])"
+      >
+        Only ltters are acceptable please
+      </small>
+    </span>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary mt-3"
+    [disabled]="addCategoryForm.invalid"
+  >
+    Add
+  </button>
+</form>

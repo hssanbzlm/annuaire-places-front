@@ -1,0 +1,31 @@
+<table class="table table-striped mx-auto my-4 w-100">
+  <thead>
+    <tr>
+      <th *ngFor="let column of tableColumns" scope="col">{{ column }}</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of tableData">
+      <td *ngFor="let innerAttribute of data | keyvalue">
+        {{ innerAttribute.value }}
+      </td>
+      <td class="w-25">
+        <button
+          type="button"
+          class="btn btn-outline-primary me-2"
+          (click)="onUpdate(data)"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="onRemove(data)"
+        >
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

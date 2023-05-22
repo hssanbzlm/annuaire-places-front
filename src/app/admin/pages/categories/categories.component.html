@@ -1,1 +1,49 @@
-<p>categories works!</p>
+<div class="mt-5">
+  <button type="button" class="btn btn-primary" (click)="handleAddEvent()">
+    Add category
+  </button>
+  <div class="w-100">
+    <app-basic-table
+      [tableData]="tableData"
+      [tableColumns]="tableColumns"
+      (onRemoveEvent)="handleRemoveEvent($event)"
+      (onUpdateEvent)="handleUpdateEvent($event)"
+    >
+    </app-basic-table>
+  </div>
+</div>
+
+<ng-template #updateCategoryModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Updating category ...</span>
+    <app-update-category
+      [category]="data"
+      (updatedCategoryEvent)="handleUpdateCategory($event)"
+    />
+  </app-basic-modal>
+</ng-template>
+<ng-template #removeCategoryModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Removing category...</span>
+    Are you sure to delete this category ?
+    <span footer>
+      <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="handleRemoveCategory()"
+      >
+        Remove
+      </button>
+    </span>
+  </app-basic-modal>
+</ng-template>
+
+<ng-template #addCategoryModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Add new category ...</span>
+    <app-add-category (addCategoryEvent)="handleAddCategory($event)" />
+  </app-basic-modal>
+</ng-template>
