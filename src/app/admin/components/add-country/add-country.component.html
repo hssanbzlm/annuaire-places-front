@@ -1,0 +1,103 @@
+<form [formGroup]="addCountryForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Name</label>
+    <input
+      formControlName="name"
+      type="text"
+      class="form-control mt-1"
+      placeholder="Name"
+    />
+    <span *ngIf="addCountryForm.get('name')?.dirty" class="d-flex flex-column">
+      <small
+        class="form-text text-muted"
+        *ngIf="addCountryForm.get('name')?.errors?.['required']"
+      >
+        Name is required
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCountryForm.get('name')?.errors?.['minlength']||addCountryForm.get('name')?.errors?.['maxlength'])"
+      >
+        Name length must be between 4 and 15
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCountryForm.get('name')?.errors?.['pattern'])"
+      >
+        Only ltters are acceptable please
+      </small>
+    </span>
+  </div>
+  <div class="form-group mt-2">
+    <label for="type">Continent</label>
+    <input
+      type="text"
+      class="form-control mt-1"
+      placeholder="Continent"
+      formControlName="continent"
+    />
+    <span
+      class="d-flex flex-column"
+      *ngIf="addCountryForm.get('continent')?.dirty"
+    >
+      <small
+        class="form-text text-muted"
+        *ngIf="addCountryForm.get('continent')?.errors?.['required']"
+      >
+        Continent is required
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCountryForm.get('continent')?.errors?.['minlength']||addCountryForm.get('continent')?.errors?.['maxlength'])"
+      >
+        Continent length must be between 4 and 15
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCountryForm.get('continent')?.errors?.['pattern'])"
+      >
+        Only ltters are acceptable please
+      </small>
+    </span>
+  </div>
+  <div class="form-group mt-2">
+    <label for="type">Description</label>
+    <input
+      type="text"
+      class="form-control mt-1"
+      placeholder="Description"
+      formControlName="description"
+    />
+    <span
+      class="d-flex flex-column"
+      *ngIf="addCountryForm.get('description')?.dirty"
+    >
+      <small
+        class="form-text text-muted"
+        *ngIf="addCountryForm.get('description')?.errors?.['required']"
+      >
+        Description is required
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCountryForm.get('description')?.errors?.['minlength']||addCountryForm.get('description')?.errors?.['maxlength'])"
+      >
+        Description length must be between 15 and 35
+      </small>
+      <small
+        class="form-text text-muted"
+        *ngIf="(addCountryForm.get('description')?.errors?.['pattern'])"
+      >
+        Only ltters are acceptable please
+      </small>
+    </span>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary mt-3"
+    [disabled]="addCountryForm.invalid"
+  >
+    Add
+  </button>
+</form>

@@ -14,6 +14,10 @@ import { UpdateCategoryComponent } from './components/update-category/update-cat
 import { FormsModule } from '@angular/forms';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddCountryComponent } from './components/add-country/add-country.component';
+import { UpdateCountryComponent } from './components/update-country/update-country.component';
+import { AddPlaceComponent } from './components/add-place/add-place.component';
+import { UpdatePlaceComponent } from './components/update-place/update-place.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BasicModalComponent,
     UpdateCategoryComponent,
     AddCategoryComponent,
+    AddCountryComponent,
+    UpdateCountryComponent,
+    AddPlaceComponent,
+    UpdatePlaceComponent,
   ],
   imports: [
     CommonModule,

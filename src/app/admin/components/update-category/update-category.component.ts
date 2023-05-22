@@ -44,7 +44,7 @@ export class UpdateCategoryComponent {
     if (this.updateCategoryForm.invalid) {
       return;
     } else {
-      this.updatedCategoryEvent.emit(this.updatedCategory);
+      this.updatedCategoryEvent.emit(this.updateCategoryForm.value);
     }
   }
 }

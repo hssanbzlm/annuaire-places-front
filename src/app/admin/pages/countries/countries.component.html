@@ -1,1 +1,49 @@
-<p>countries works!</p>
+<div class="mt-5">
+  <button type="button" class="btn btn-primary" (click)="handleAddEvent()">
+    Add country
+  </button>
+  <div class="w-100">
+    <app-basic-table
+      [tableData]="tableData"
+      [tableColumns]="tableColumns"
+      (onRemoveEvent)="handleRemoveEvent($event)"
+      (onUpdateEvent)="handleUpdateEvent($event)"
+    >
+    </app-basic-table>
+  </div>
+</div>
+
+<ng-template #updateCountryModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Updating country ...</span>
+    <app-update-country
+      [country]="data"
+      (updatedCountryEvent)="handleUpdateCountry($event)"
+    />
+  </app-basic-modal>
+</ng-template>
+<ng-template #removeCountryModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Removing country...</span>
+    Are you sure to delete this country ?
+    <span footer>
+      <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="handleRemoveCountry()"
+      >
+        Remove
+      </button>
+    </span>
+  </app-basic-modal>
+</ng-template>
+
+<ng-template #addCountryModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Add new country ...</span>
+    <app-add-country (addCountryEvent)="handleAddCountry($event)" />
+  </app-basic-modal>
+</ng-template>

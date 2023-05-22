@@ -1,1 +1,49 @@
-<p>places works!</p>
+<div class="mt-5">
+  <button type="button" class="btn btn-primary" (click)="handleAddEvent()">
+    Add place
+  </button>
+  <div class="w-100">
+    <app-basic-table
+      [tableData]="tableData"
+      [tableColumns]="tableColumns"
+      (onRemoveEvent)="handleRemoveEvent($event)"
+      (onUpdateEvent)="handleUpdateEvent($event)"
+    >
+    </app-basic-table>
+  </div>
+</div>
+
+<ng-template #updatePlaceModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Updating place ...</span>
+    <app-update-place
+      [place]="data"
+      (updatePlaceEvent)="handleUpdatePlace($event)"
+    />
+  </app-basic-modal>
+</ng-template>
+<ng-template #removePlaceModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Removing place...</span>
+    Are you sure to delete this place ?
+    <span footer>
+      <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="handleRemovePlace()"
+      >
+        Remove
+      </button>
+    </span>
+  </app-basic-modal>
+</ng-template>
+
+<ng-template #addPlaceModal>
+  <app-basic-modal (closeEvent)="closeModal()">
+    <span title>Add new place ...</span>
+    <app-add-place (addPlaceEvent)="handleAddPlace($event)" />
+  </app-basic-modal>
+</ng-template>
