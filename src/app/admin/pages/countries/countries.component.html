@@ -16,10 +16,12 @@
 <ng-template #updateCountryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Updating country ...</span>
-    <app-update-country
+    <app-manage-country
       [country]="data"
-      (updatedCountryEvent)="handleUpdateCountry($event)"
-    />
+      (manageCountryEvent)="handleUpdateCountry($event)"
+    >
+      <span btn-label>Update</span>
+    </app-manage-country>
   </app-basic-modal>
 </ng-template>
 <ng-template #removeCountryModal>
@@ -44,6 +46,8 @@
 <ng-template #addCountryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Add new country ...</span>
-    <app-add-country (addCountryEvent)="handleAddCountry($event)" />
+    <app-manage-country (manageCountryEvent)="handleAddCountry($event)">
+      <span btn-label>Add</span>
+    </app-manage-country>
   </app-basic-modal>
 </ng-template>

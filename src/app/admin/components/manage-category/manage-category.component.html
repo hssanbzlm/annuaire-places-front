@@ -1,4 +1,4 @@
-<form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="manageCategoryForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="title">Title</label>
     <input
@@ -8,24 +8,24 @@
       placeholder="Title"
     />
     <span
-      *ngIf="addCategoryForm.get('title')?.dirty"
+      *ngIf="manageCategoryForm.get('title')?.dirty"
       class="d-flex flex-column"
     >
       <small
         class="form-text text-muted"
-        *ngIf="addCategoryForm.get('title')?.errors?.['required']"
+        *ngIf="manageCategoryForm.get('title')?.errors?.['required']"
       >
         Title is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCategoryForm.get('title')?.errors?.['minlength']||addCategoryForm.get('title')?.errors?.['maxlength'])"
+        *ngIf="(manageCategoryForm.get('title')?.errors?.['minlength']||manageCategoryForm.get('title')?.errors?.['maxlength'])"
       >
         Title length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCategoryForm.get('title')?.errors?.['pattern'])"
+        *ngIf="(manageCategoryForm.get('title')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
@@ -39,33 +39,35 @@
       placeholder="Type"
       formControlName="type"
     />
-    <span class="d-flex flex-column" *ngIf="addCategoryForm.get('type')?.dirty">
+    <span
+      class="d-flex flex-column"
+      *ngIf="manageCategoryForm.get('type')?.dirty"
+    >
       <small
         class="form-text text-muted"
-        *ngIf="addCategoryForm.get('type')?.errors?.['required']"
+        *ngIf="manageCategoryForm.get('type')?.errors?.['required']"
       >
         Type is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCategoryForm.get('type')?.errors?.['minlength']||addCategoryForm.get('type')?.errors?.['maxlength'])"
+        *ngIf="(manageCategoryForm.get('type')?.errors?.['minlength']||manageCategoryForm.get('type')?.errors?.['maxlength'])"
       >
         Type length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCategoryForm.get('type')?.errors?.['pattern'])"
+        *ngIf="(manageCategoryForm.get('type')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
     </span>
   </div>
-
   <button
     type="submit"
     class="btn btn-primary mt-3"
-    [disabled]="addCategoryForm.invalid"
+    [disabled]="manageCategoryForm.invalid"
   >
-    Add
+    <ng-content select="[btn-label]"></ng-content>
   </button>
 </form>

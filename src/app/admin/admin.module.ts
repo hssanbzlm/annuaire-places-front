@@ -10,14 +10,11 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { PlacesComponent } from './pages/places/places.component';
 import { BasicTableComponent } from './components/basic-table/basic-table.component';
 import { BasicModalComponent } from './components/basic-modal/basic-modal.component';
-import { UpdateCategoryComponent } from './components/update-category/update-category.component';
+import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import { FormsModule } from '@angular/forms';
-import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddCountryComponent } from './components/add-country/add-country.component';
-import { UpdateCountryComponent } from './components/update-country/update-country.component';
-import { AddPlaceComponent } from './components/add-place/add-place.component';
-import { UpdatePlaceComponent } from './components/update-place/update-place.component';
+import { ManageCountryComponent } from './components/manage-country/manage-country.component';
+import { ManagePlaceComponent } from './components/manage-place/manage-place.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +25,9 @@ import { UpdatePlaceComponent } from './components/update-place/update-place.com
     PlacesComponent,
     BasicTableComponent,
     BasicModalComponent,
-    UpdateCategoryComponent,
-    AddCategoryComponent,
-    AddCountryComponent,
-    UpdateCountryComponent,
-    AddPlaceComponent,
-    UpdatePlaceComponent,
+    ManageCategoryComponent,
+    ManageCountryComponent,
+    ManagePlaceComponent,
   ],
   imports: [
     CommonModule,

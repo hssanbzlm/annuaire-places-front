@@ -16,10 +16,12 @@
 <ng-template #updateCategoryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Updating category ...</span>
-    <app-update-category
+    <app-manage-category
       [category]="data"
-      (updatedCategoryEvent)="handleUpdateCategory($event)"
-    />
+      (manageCategoryEvent)="handleUpdateCategory($event)"
+    >
+      <span btn-label>Update</span>
+    </app-manage-category>
   </app-basic-modal>
 </ng-template>
 <ng-template #removeCategoryModal>
@@ -44,6 +46,8 @@
 <ng-template #addCategoryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Add new category ...</span>
-    <app-add-category (addCategoryEvent)="handleAddCategory($event)" />
+    <app-manage-category (manageCategoryEvent)="handleAddCategory($event)">
+      <span btn-label>Add</span>
+    </app-manage-category>
   </app-basic-modal>
 </ng-template>

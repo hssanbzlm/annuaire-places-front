@@ -2,15 +2,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-update-category',
-  templateUrl: './update-category.component.html',
-  styleUrls: ['./update-category.component.css'],
+  selector: 'app-manage-category',
+  templateUrl: './manage-category.component.html',
+  styleUrls: ['./manage-category.component.css'],
 })
-export class UpdateCategoryComponent {
+export class ManageCategoryComponent {
   @Input() category: any;
-  @Output() updatedCategoryEvent = new EventEmitter();
+  @Output() manageCategoryEvent = new EventEmitter();
   updatedCategory: any;
-  updateCategoryForm!: FormGroup;
+  manageCategoryForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class UpdateCategoryComponent {
   }
 
   initForm() {
-    this.updateCategoryForm = this.formBuilder.group({
+    this.manageCategoryForm = this.formBuilder.group({
       title: [
         this.updatedCategory.title,
         [
@@ -41,10 +41,10 @@ export class UpdateCategoryComponent {
     });
   }
   onSubmit() {
-    if (this.updateCategoryForm.invalid) {
+    if (this.manageCategoryForm.invalid) {
       return;
     } else {
-      this.updatedCategoryEvent.emit(this.updateCategoryForm.value);
+      this.manageCategoryEvent.emit(this.manageCategoryForm.value);
     }
   }
 }

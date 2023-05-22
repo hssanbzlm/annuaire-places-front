@@ -1,35 +1,38 @@
-<form [formGroup]="addCountryForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="manageCountryForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="title">Name</label>
+    <label for="name">name</label>
     <input
       formControlName="name"
       type="text"
       class="form-control mt-1"
       placeholder="Name"
     />
-    <span *ngIf="addCountryForm.get('name')?.dirty" class="d-flex flex-column">
+    <span
+      *ngIf="manageCountryForm.get('name')?.dirty"
+      class="d-flex flex-column"
+    >
       <small
         class="form-text text-muted"
-        *ngIf="addCountryForm.get('name')?.errors?.['required']"
+        *ngIf="manageCountryForm.get('name')?.errors?.['required']"
       >
         Name is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCountryForm.get('name')?.errors?.['minlength']||addCountryForm.get('name')?.errors?.['maxlength'])"
+        *ngIf="(manageCountryForm.get('name')?.errors?.['minlength']||manageCountryForm.get('name')?.errors?.['maxlength'])"
       >
         Name length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCountryForm.get('name')?.errors?.['pattern'])"
+        *ngIf="(manageCountryForm.get('name')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
     </span>
   </div>
   <div class="form-group mt-2">
-    <label for="type">Continent</label>
+    <label for="continent">Continent</label>
     <input
       type="text"
       class="form-control mt-1"
@@ -38,30 +41,30 @@
     />
     <span
       class="d-flex flex-column"
-      *ngIf="addCountryForm.get('continent')?.dirty"
+      *ngIf="manageCountryForm.get('continent')?.dirty"
     >
       <small
         class="form-text text-muted"
-        *ngIf="addCountryForm.get('continent')?.errors?.['required']"
+        *ngIf="manageCountryForm.get('continent')?.errors?.['required']"
       >
         Continent is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCountryForm.get('continent')?.errors?.['minlength']||addCountryForm.get('continent')?.errors?.['maxlength'])"
+        *ngIf="(manageCountryForm.get('continent')?.errors?.['minlength']||manageCountryForm.get('continent')?.errors?.['maxlength'])"
       >
         Continent length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCountryForm.get('continent')?.errors?.['pattern'])"
+        *ngIf="(manageCountryForm.get('continent')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
     </span>
   </div>
   <div class="form-group mt-2">
-    <label for="type">Description</label>
+    <label for="description">Description</label>
     <input
       type="text"
       class="form-control mt-1"
@@ -70,34 +73,33 @@
     />
     <span
       class="d-flex flex-column"
-      *ngIf="addCountryForm.get('description')?.dirty"
+      *ngIf="manageCountryForm.get('description')?.dirty"
     >
       <small
         class="form-text text-muted"
-        *ngIf="addCountryForm.get('description')?.errors?.['required']"
+        *ngIf="manageCountryForm.get('description')?.errors?.['required']"
       >
         Description is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCountryForm.get('description')?.errors?.['minlength']||addCountryForm.get('description')?.errors?.['maxlength'])"
+        *ngIf="(manageCountryForm.get('description')?.errors?.['minlength']||manageCountryForm.get('description')?.errors?.['maxlength'])"
       >
-        Description length must be between 15 and 35
+        Description length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addCountryForm.get('description')?.errors?.['pattern'])"
+        *ngIf="(manageCountryForm.get('description')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
     </span>
   </div>
-
   <button
     type="submit"
     class="btn btn-primary mt-3"
-    [disabled]="addCountryForm.invalid"
+    [disabled]="manageCountryForm.invalid"
   >
-    Add
+    <ng-content select="[btn-label]"></ng-content>
   </button>
 </form>

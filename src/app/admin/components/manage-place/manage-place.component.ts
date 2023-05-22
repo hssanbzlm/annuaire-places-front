@@ -2,15 +2,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-update-place',
-  templateUrl: './update-place.component.html',
-  styleUrls: ['./update-place.component.css'],
+  selector: 'app-manage-place',
+  templateUrl: './manage-place.component.html',
+  styleUrls: ['./manage-place.component.css'],
 })
-export class UpdatePlaceComponent {
+export class ManagePlaceComponent {
   @Input() place: any;
-  @Output() updatePlaceEvent = new EventEmitter();
+  @Output() managePlaceEvent = new EventEmitter();
   updatedPlace: any;
-  updatePlaceForm!: FormGroup;
+  managePlaceForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class UpdatePlaceComponent {
   }
 
   initForm() {
-    this.updatePlaceForm = this.formBuilder.group({
+    this.managePlaceForm = this.formBuilder.group({
       name: [
         this.updatedPlace.name,
         [
@@ -42,10 +42,10 @@ export class UpdatePlaceComponent {
     });
   }
   onSubmit() {
-    if (this.updatePlaceForm.invalid) {
+    if (this.managePlaceForm.invalid) {
       return;
     } else {
-      this.updatePlaceEvent.emit(this.updatePlaceForm.value);
+      this.managePlaceEvent.emit(this.managePlaceForm.value);
     }
   }
 }

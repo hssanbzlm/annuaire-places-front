@@ -16,10 +16,12 @@
 <ng-template #updatePlaceModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Updating place ...</span>
-    <app-update-place
+    <app-manage-place
       [place]="data"
-      (updatePlaceEvent)="handleUpdatePlace($event)"
-    />
+      (managePlaceEvent)="handleUpdatePlace($event)"
+    >
+      <span btn-label>Update</span>
+    </app-manage-place>
   </app-basic-modal>
 </ng-template>
 <ng-template #removePlaceModal>
@@ -44,6 +46,8 @@
 <ng-template #addPlaceModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Add new place ...</span>
-    <app-add-place (addPlaceEvent)="handleAddPlace($event)" />
+    <app-manage-place (managePlaceEvent)="handleAddPlace($event)">
+      <span btn-label>Add</span>
+    </app-manage-place>
   </app-basic-modal>
 </ng-template>

@@ -1,28 +1,28 @@
-<form [formGroup]="addPlaceForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="managePlaceForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="title">Name</label>
+    <label for="name">Name</label>
     <input
       formControlName="name"
       type="text"
       class="form-control mt-1"
       placeholder="Name"
     />
-    <span *ngIf="addPlaceForm.get('name')?.dirty" class="d-flex flex-column">
+    <span *ngIf="managePlaceForm.get('name')?.dirty" class="d-flex flex-column">
       <small
         class="form-text text-muted"
-        *ngIf="addPlaceForm.get('name')?.errors?.['required']"
+        *ngIf="managePlaceForm.get('name')?.errors?.['required']"
       >
-        Name is required
+        Title is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addPlaceForm.get('name')?.errors?.['minlength']||addPlaceForm.get('name')?.errors?.['maxlength'])"
+        *ngIf="(managePlaceForm.get('name')?.errors?.['minlength']||managePlaceForm.get('name')?.errors?.['maxlength'])"
       >
-        Name length must be between 4 and 15
+        Title length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addPlaceForm.get('name')?.errors?.['pattern'])"
+        *ngIf="(managePlaceForm.get('name')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
@@ -38,23 +38,23 @@
     />
     <span
       class="d-flex flex-column"
-      *ngIf="addPlaceForm.get('description')?.dirty"
+      *ngIf="managePlaceForm.get('description')?.dirty"
     >
       <small
         class="form-text text-muted"
-        *ngIf="addPlaceForm.get('description')?.errors?.['required']"
+        *ngIf="managePlaceForm.get('description')?.errors?.['required']"
       >
         Description is required
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addPlaceForm.get('description')?.errors?.['minlength']||addPlaceForm.get('description')?.errors?.['maxlength'])"
+        *ngIf="(managePlaceForm.get('description')?.errors?.['minlength']||managePlaceForm.get('type')?.errors?.['maxlength'])"
       >
         Description length must be between 15 and 35
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(addPlaceForm.get('description')?.errors?.['pattern'])"
+        *ngIf="(managePlaceForm.get('description')?.errors?.['pattern'])"
       >
         Only ltters are acceptable please
       </small>
@@ -68,21 +68,23 @@
       placeholder="Phone"
       formControlName="phone"
     />
-    <span class="d-flex flex-column" *ngIf="addPlaceForm.get('phone')?.dirty">
+    <span
+      class="d-flex flex-column"
+      *ngIf="managePlaceForm.get('phone')?.dirty"
+    >
       <small
         class="form-text text-muted"
-        *ngIf="addPlaceForm.get('phone')?.errors?.['required']"
+        *ngIf="managePlaceForm.get('phone')?.errors?.['required']"
       >
         Phone is required
       </small>
     </span>
   </div>
-
   <button
     type="submit"
     class="btn btn-primary mt-3"
-    [disabled]="addPlaceForm.invalid"
+    [disabled]="managePlaceForm.invalid"
   >
-    Add
+    <ng-content select="[btn-label]"></ng-content>
   </button>
 </form>

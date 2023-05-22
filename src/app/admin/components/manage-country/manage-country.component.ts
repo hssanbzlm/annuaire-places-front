@@ -1,24 +1,28 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-country',
-  templateUrl: './add-country.component.html',
-  styleUrls: ['./add-country.component.css'],
+  selector: 'app-manage-country',
+  templateUrl: './manage-country.component.html',
+  styleUrls: ['./manage-country.component.css'],
 })
-export class AddCountryComponent {
-  @Output() addCountryEvent = new EventEmitter();
-  addCountryForm!: FormGroup;
+export class ManageCountryComponent {
+  @Input() country: any;
+  @Output() manageCountryEvent = new EventEmitter();
+
+  updatedCountry: any;
+  manageCountryForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
+    this.updatedCountry = { ...this.country };
     this.initForm();
   }
 
   initForm() {
-    this.addCountryForm = this.formBuilder.group({
+    this.manageCountryForm = this.formBuilder.group({
       name: [
-        '',
+        this.updatedCountry.name,
         [
           Validators.required,
           Validators.minLength(4),
@@ -27,7 +31,7 @@ export class AddCountryComponent {
         ],
       ],
       continent: [
-        '',
+        this.updatedCountry.continent,
         [
           Validators.required,
           Validators.minLength(4),
@@ -36,7 +40,7 @@ export class AddCountryComponent {
         ],
       ],
       description: [
-        '',
+        this.updatedCountry.description,
         [
           Validators.required,
           Validators.minLength(15),
@@ -46,11 +50,11 @@ export class AddCountryComponent {
       ],
     });
   }
-
   onSubmit() {
-    if (this.addCountryForm.invalid) return;
-    else {
-      this.addCountryEvent.emit(this.addCountryForm.value);
+    if (this.manageCountryForm.invalid) {
+      return;
+    } else {
+      this.manageCountryEvent.emit(this.manageCountryForm.value);
     }
   }
 }
