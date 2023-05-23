@@ -7,8 +7,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of tableData">
-      <td *ngFor="let innerAttribute of data | keyvalue">
-        {{ innerAttribute.value }}
+      <td *ngFor="let innerAttribute of tableColumns">
+        {{ data[innerAttribute] }}
       </td>
       <td>
         <button
