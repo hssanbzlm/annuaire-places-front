@@ -4,7 +4,7 @@
   </button>
   <div class="w-100 m-5">
     <app-basic-table
-      [tableData]="tableData"
+      [tableData]="countryList"
       [tableColumns]="tableColumns"
       (onRemoveEvent)="handleRemoveEvent($event)"
       (onUpdateEvent)="handleUpdateEvent($event)"
@@ -17,7 +17,7 @@
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Updating country ...</span>
     <app-manage-country
-      [country]="data"
+      [country]="country"
       (manageCountryEvent)="handleUpdateCountry($event)"
     >
       <span btn-label>Update</span>

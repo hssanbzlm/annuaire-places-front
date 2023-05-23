@@ -1,6 +1,9 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
+import { CountryDataService } from 'src/app/services/country-data.service';
+import { Country } from 'src/app/Interfaces/country';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-countries',
@@ -15,45 +18,61 @@ export class CountriesComponent {
   removeCountryModal!: TemplateRef<BasicModalComponent>;
   @ViewChild('addCountryModal', { read: TemplateRef })
   addCountryModal!: TemplateRef<BasicModalComponent>;
-
-  tableData = [
-    {
-      name: 'Spain',
-      description: 'loremipsumloremipsumloremipsum',
-      continent: 'Europe',
-    },
-    {
-      continent: 'Africa',
-      description: 'loremipsumloremipsumloremipsum',
-      name: 'Tunisia',
-    },
-  ];
+  countryList!: Country[];
   tableColumns = ['name', 'continent', 'description'];
-  data = {};
+  country!: Country;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private countryService: CountryDataService
+  ) {}
+  ngOnInit(): void {
+    this.countryService.getCountries().subscribe(({ data }) => {
+      this.countryList = data;
+    });
+  }
 
   handleAddEvent() {
     this.modalRef = this.modalService.open(this.addCountryModal);
   }
   handleRemoveEvent(data: any) {
     this.modalRef = this.modalService.open(this.removeCountryModal);
-    this.data = data;
+    this.country = data;
   }
   handleUpdateEvent(data: any) {
     this.modalRef = this.modalService.open(this.updateCountryModal);
-    this.data = data;
+    this.country = data;
   }
 
-  handleAddCountry(data: any) {
-    console.log('your data is added ', data);
+  handleAddCountry(country: Country) {
+    this.countryService.addCountry(country).subscribe(({ data }) => {
+      if (data._id) {
+        this.countryList.push(data);
+        this.closeModal();
+      }
+    });
   }
   handleRemoveCountry() {
-    console.log('this data will be removed ', this.data);
+    this.countryService.removeCountry(this.country).subscribe(({ data }) => {
+      if (data._id) {
+        this.countryList = this.countryList.filter(
+          (country) => country._id != data._id
+        );
+        this.closeModal();
+      }
+    });
   }
 
-  handleUpdateCountry(data: any) {
-    console.log('this data will be updated ', data);
+  handleUpdateCountry(country: Country) {
+    this.countryService.updateCountry(country).subscribe(({ data }) => {
+      if (data._id) {
+        this.countryList = this.countryList.map((country) => {
+          if (country._id == data._id) return data;
+          return country;
+        });
+        this.closeModal();
+      }
+    });
   }
 
   handleCancel() {

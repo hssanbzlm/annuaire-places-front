@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Country } from 'src/app/Interfaces/country';
 
 @Component({
   selector: 'app-manage-country',
@@ -7,10 +8,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./manage-country.component.css'],
 })
 export class ManageCountryComponent {
-  @Input() country: any;
+  @Input() country!: Country;
   @Output() manageCountryEvent = new EventEmitter();
 
-  updatedCountry: any;
+  updatedCountry!: Country;
   manageCountryForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -54,7 +55,14 @@ export class ManageCountryComponent {
     if (this.manageCountryForm.invalid) {
       return;
     } else {
-      this.manageCountryEvent.emit(this.manageCountryForm.value);
+      const countryValue = this.updatedCountry._id
+        ? {
+            ...this.manageCountryForm.value,
+            _id: this.updatedCountry._id,
+          }
+        : this.manageCountryForm.value;
+
+      this.manageCountryEvent.emit(countryValue);
     }
   }
 }
