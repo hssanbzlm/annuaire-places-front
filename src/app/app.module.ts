@@ -18,6 +18,8 @@ import { CategoryListComponent } from './pages/category-list/category-list.compo
 import { AdminModule } from './admin/admin.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     NgbModule,
     AppRoutingModule,
     AdminModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

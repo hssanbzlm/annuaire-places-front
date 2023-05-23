@@ -4,7 +4,7 @@
   </button>
   <div class="w-100 m-5">
     <app-basic-table
-      [tableData]="tableData"
+      [tableData]="categoryList"
       [tableColumns]="tableColumns"
       (onRemoveEvent)="handleRemoveEvent($event)"
       (onUpdateEvent)="handleUpdateEvent($event)"
@@ -17,7 +17,7 @@
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Updating category ...</span>
     <app-manage-category
-      [category]="data"
+      [category]="category"
       (manageCategoryEvent)="handleUpdateCategory($event)"
     >
       <span btn-label>Update</span>

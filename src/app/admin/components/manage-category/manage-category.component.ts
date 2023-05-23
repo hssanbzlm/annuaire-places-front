@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Category } from 'src/app/Interfaces/category';
 
 @Component({
   selector: 'app-manage-category',
@@ -7,9 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./manage-category.component.css'],
 })
 export class ManageCategoryComponent {
-  @Input() category: any;
+  @Input() category!: Category;
   @Output() manageCategoryEvent = new EventEmitter();
-  updatedCategory: any;
+  updatedCategory!: Category;
   manageCategoryForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -20,17 +21,8 @@ export class ManageCategoryComponent {
 
   initForm() {
     this.manageCategoryForm = this.formBuilder.group({
-      title: [
-        this.updatedCategory.title,
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(15),
-          Validators.pattern(/^[A-Za-z]+$/),
-        ],
-      ],
-      type: [
-        this.updatedCategory.type,
+      name: [
+        this.updatedCategory.name,
         [
           Validators.required,
           Validators.minLength(4),
@@ -44,7 +36,13 @@ export class ManageCategoryComponent {
     if (this.manageCategoryForm.invalid) {
       return;
     } else {
-      this.manageCategoryEvent.emit(this.manageCategoryForm.value);
+      const categoryValue = this.updatedCategory._id
+        ? {
+            ...this.manageCategoryForm.value,
+            _id: this.updatedCategory._id,
+          }
+        : this.manageCategoryForm.value;
+      this.manageCategoryEvent.emit(categoryValue);
     }
   }
 }

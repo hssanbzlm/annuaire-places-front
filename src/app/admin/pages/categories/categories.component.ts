@@ -1,6 +1,9 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
+import { CategoryDataService } from 'src/app/services/category-data.service';
+import { Category } from 'src/app/Interfaces/category';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -9,13 +12,10 @@ import { BasicModalComponent } from '../../components/basic-modal/basic-modal.co
 })
 export class CategoriesComponent {
   private modalRef!: NgbModalRef;
-  data: any;
-  tableData = [
-    { title: 'restaurant', type: 'gg' },
-    { title: 'sport', type: 'hh' },
-    { title: 'fitness', type: 'f' },
-  ];
-  tableColumns = ['title', 'type'];
+
+  category!: Category;
+  categoryList!: Category[];
+  tableColumns = ['name'];
   @ViewChild('updateCategoryModal', { read: TemplateRef })
   updateCategoryModal!: TemplateRef<BasicModalComponent>;
   @ViewChild('removeCategoryModal', { read: TemplateRef })
@@ -23,30 +23,60 @@ export class CategoriesComponent {
   @ViewChild('addCategoryModal', { read: TemplateRef })
   addCategoryModal!: TemplateRef<BasicModalComponent>;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private categoryService: CategoryDataService
+  ) {}
 
-  handleRemoveEvent(data: any) {
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(({ data }) => {
+      this.categoryList = data;
+    });
+  }
+  handleRemoveEvent(category: Category) {
     this.modalRef = this.modalService.open(this.removeCategoryModal);
-    this.data = data;
+    this.category = category;
   }
 
-  handleUpdateEvent(data: any) {
+  handleUpdateEvent(category: Category) {
     this.modalRef = this.modalService.open(this.updateCategoryModal);
-    this.data = data;
+    this.category = category;
   }
   handleAddEvent() {
     this.modalRef = this.modalService.open(this.addCategoryModal);
   }
-  handleAddCategory(data: any) {
-    console.log('this is the new category I received ', data);
+  handleAddCategory(category: Category) {
+    this.categoryService.addCategory(category).subscribe(({ data }) => {
+      if (data._id) {
+        this.categoryList.push(data);
+        this.closeModal();
+      }
+    });
   }
 
   handleRemoveCategory() {
-    console.log('this item will be removed ', this.data);
+    this.categoryService.removeCategory(this.category).subscribe(({ data }) => {
+      if (data._id) {
+        this.categoryList = this.categoryList.filter(
+          (category) => category._id != data._id
+        );
+        this.closeModal();
+      }
+    });
   }
 
-  handleUpdateCategory(data: any) {
-    console.log('this item will be updated', data);
+  handleUpdateCategory(category: Category) {
+    this.categoryService.updateCategory(category).subscribe(({ data }) => {
+      if (data._id) {
+        this.categoryList = this.categoryList.map((category) => {
+          if (category._id == data._id) {
+            return data;
+          }
+          return category;
+        });
+        this.closeModal();
+      }
+    });
   }
 
   handleCancel() {
@@ -54,6 +84,5 @@ export class CategoriesComponent {
   }
   closeModal() {
     this.modalRef.close();
-    this.data = {};
   }
 }
