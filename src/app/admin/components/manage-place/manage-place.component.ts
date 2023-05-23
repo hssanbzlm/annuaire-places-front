@@ -26,7 +26,7 @@ export class ManagePlaceComponent {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(15),
-          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.pattern(/^\w+(\s\w+)*$/),
         ],
       ],
       description: [
@@ -35,7 +35,7 @@ export class ManagePlaceComponent {
           Validators.required,
           Validators.minLength(15),
           Validators.maxLength(35),
-          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.pattern(/^\w+(\s\w+)*$/),
         ],
       ],
       phone: [this.updatedPlace.phone, [Validators.required]],

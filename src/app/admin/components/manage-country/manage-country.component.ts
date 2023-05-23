@@ -28,7 +28,7 @@ export class ManageCountryComponent {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(15),
-          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.pattern(/^\w+(\s\w+)*$/),
         ],
       ],
       continent: [
@@ -46,7 +46,7 @@ export class ManageCountryComponent {
           Validators.required,
           Validators.minLength(15),
           Validators.maxLength(35),
-          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.pattern(/^\w+(\s\w+)*$/),
         ],
       ],
     });
