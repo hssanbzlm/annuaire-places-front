@@ -23,15 +23,26 @@ li{
     margin-top: 30px;
     text-align: center;
 }
-
-@media only screen and (min-width: 575px) {
+@media only screen and (min-width: 576px) {
     .sidebar-container{
         margin-top: 100px;
+    }
+    .sidebar{
+        width: 130px;
+    }
+}
+
+@media only screen and (min-width: 817px) {
+   
+    .sidebar{
         width: 200px;
     }
 }
 
-@media only screen and (max-width: 575px) {
+
+
+
+@media only screen and (max-width: 576px) {
     .title{
         display:none;
     }
