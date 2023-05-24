@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ManageCountryComponent } from './components/manage-country/manage-country.component';
 import { ManagePlaceComponent } from './components/manage-place/manage-place.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ManagePlaceComponent } from './components/manage-place/manage-place.com
     ManageCategoryComponent,
     ManageCountryComponent,
     ManagePlaceComponent,
+    SigninComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

@@ -14,15 +14,5 @@ import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  faDashboard = faDashboard;
-  faUser = faUser;
-  faearthEurope = faEarthEurope;
-  famapLocationDot = faMapLocationDot;
-  faComment = faComment;
-  fafaceAngry = faFaceAngry;
-  constructor(config: NgbModalConfig) {
-    //app modals configuration
-    config.backdrop = 'static';
-    config.centered = true;
-  }
+  constructor(config: NgbModalConfig) {}
 }
