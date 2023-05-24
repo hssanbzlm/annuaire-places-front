@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { first, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../Interfaces/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,15 @@ import { User } from '../Interfaces/user';
 export class AuthService {
   private url = `${environment.baseUrl}/auth/signin`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signin(data: User) {
     return this.http.post<{ token: string }>(this.url, data).pipe(first());
+  }
+
+  logout() {
+    localStorage.removeItem('jwt-annuaire-places');
+    this.router.navigateByUrl('admin/auth');
   }
 
   getIsAuthenticated() {
