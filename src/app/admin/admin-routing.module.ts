@@ -7,16 +7,22 @@ import { PlacesComponent } from './pages/places/places.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
+import { authenticationGuard, isLoggedGuard } from './Guard/AuthGuard';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
     children: [
-      { path: 'auth', component: SigninComponent },
+      {
+        path: 'auth',
+        component: SigninComponent,
+        canActivate: [isLoggedGuard()],
+      },
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [authenticationGuard()],
         children: [
           { path: '', component: DashboardComponent },
           { path: 'dashboard', component: DashboardComponent },
