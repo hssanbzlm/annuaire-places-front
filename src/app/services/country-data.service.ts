@@ -37,6 +37,7 @@ export class CountryDataService {
   removeCountry(country: Country): Observable<{ data: Country }> {
     return this.http
       .delete<{ data: Country }>(`${this.url}/remove`, {
+        headers: this.header,
         body: country,
       })
       .pipe(first());
