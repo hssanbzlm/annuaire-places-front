@@ -17,6 +17,7 @@ import { ManageCountryComponent } from './components/manage-country/manage-count
 import { ManagePlaceComponent } from './components/manage-place/manage-place.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HomeComponent } from './pages/home/home.component';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbTypeaheadModule,
   ],
 })
 export class AdminModule {}

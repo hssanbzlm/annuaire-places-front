@@ -2,10 +2,14 @@
   <div class="form-group">
     <label for="name">name</label>
     <input
-      formControlName="name"
+      id="typeahead-template"
       type="text"
+      formControlName="name"
       class="form-control mt-1"
-      placeholder="Name"
+      placeholder="country"
+      [ngbTypeahead]="search"
+      [editable]="false"
+      popupClass="custom-popup"
     />
     <span
       *ngIf="manageCountryForm.get('name')?.dirty"
@@ -16,18 +20,6 @@
         *ngIf="manageCountryForm.get('name')?.errors?.['required']"
       >
         Name is required
-      </small>
-      <small
-        class="form-text text-muted"
-        *ngIf="(manageCountryForm.get('name')?.errors?.['minlength']||manageCountryForm.get('name')?.errors?.['maxlength'])"
-      >
-        Name length must be between 4 and 15
-      </small>
-      <small
-        class="form-text text-muted"
-        *ngIf="(manageCountryForm.get('name')?.errors?.['pattern'])"
-      >
-        Only ltters are acceptable please
       </small>
     </span>
   </div>

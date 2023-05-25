@@ -39,3 +39,10 @@ body {
   .secondary-border{
     border: 1px solid grey;
   }
+
+
+  /* global style for typeahead popup window */
+  .custom-popup{    
+    max-height: 180px;
+    overflow: auto;
+}
