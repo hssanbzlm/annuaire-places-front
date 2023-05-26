@@ -12,13 +12,13 @@
         class="form-text text-muted"
         *ngIf="managePlaceForm.get('name')?.errors?.['required']"
       >
-        Title is required
+        Name is required
       </small>
       <small
         class="form-text text-muted"
         *ngIf="(managePlaceForm.get('name')?.errors?.['minlength']||managePlaceForm.get('name')?.errors?.['maxlength'])"
       >
-        Title length must be between 4 and 15
+        Name length must be between 4 and 15
       </small>
       <small
         class="form-text text-muted"
@@ -27,6 +27,39 @@
         Only ltters are acceptable please
       </small>
     </span>
+  </div>
+  <div class="form-group mt-2">
+    <label for="type">Country</label>
+    <select formControlName="country" class="form-select">
+      <option *ngFor="let country of countries" [value]="country">
+        {{ country }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group mt-2">
+    <label for="type">City</label>
+    <input
+      type="text"
+      class="form-control mt-1"
+      placeholder="City"
+      formControlName="city"
+    />
+    <span class="d-flex flex-column" *ngIf="managePlaceForm.get('city')?.dirty">
+      <small
+        class="form-text text-muted"
+        *ngIf="managePlaceForm.get('city')?.errors?.['required']"
+      >
+        City is required
+      </small>
+    </span>
+  </div>
+  <div class="form-group mt-2">
+    <label for="type">Category</label>
+    <select formControlName="category" class="form-select">
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
   </div>
   <div class="form-group mt-2">
     <label for="type">Description</label>
@@ -48,7 +81,7 @@
       </small>
       <small
         class="form-text text-muted"
-        *ngIf="(managePlaceForm.get('description')?.errors?.['minlength']||managePlaceForm.get('type')?.errors?.['maxlength'])"
+        *ngIf="(managePlaceForm.get('description')?.errors?.['minlength']||managePlaceForm.get('description')?.errors?.['maxlength'])"
       >
         Description length must be between 15 and 35
       </small>

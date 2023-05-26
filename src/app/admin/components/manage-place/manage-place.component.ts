@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Place } from 'src/app/Interfaces/place';
 
 @Component({
   selector: 'app-manage-place',
@@ -7,9 +14,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./manage-place.component.css'],
 })
 export class ManagePlaceComponent {
-  @Input() place: any;
+  @Input() place!: Place;
+  @Input() categories!: string[];
+  @Input() countries!: string[];
   @Output() managePlaceEvent = new EventEmitter();
-  updatedPlace: any;
+  updatedPlace!: Place;
   managePlaceForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -29,6 +38,9 @@ export class ManagePlaceComponent {
           Validators.pattern(/^\w+(\s\w+)*$/),
         ],
       ],
+      country: [this.updatedPlace.country?.name, [Validators.required]],
+      city: [this.updatedPlace.city, [Validators.required]],
+      category: [this.updatedPlace.category?.name, [Validators.required]],
       description: [
         this.updatedPlace.description,
         [
@@ -45,7 +57,13 @@ export class ManagePlaceComponent {
     if (this.managePlaceForm.invalid) {
       return;
     } else {
-      this.managePlaceEvent.emit(this.managePlaceForm.value);
+      const placeValue = this.updatedPlace._id
+        ? {
+            ...this.managePlaceForm.value,
+            _id: this.updatedPlace._id,
+          }
+        : this.managePlaceForm.value;
+      this.managePlaceEvent.emit(placeValue);
     }
   }
 }

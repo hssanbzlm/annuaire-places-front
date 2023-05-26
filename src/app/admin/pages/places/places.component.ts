@@ -1,6 +1,10 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
+import { Place } from 'src/app/Interfaces/place';
+import { PlaceDataService } from 'src/app/services/place-data.service';
+import { CategoryDataService } from 'src/app/services/category-data.service';
+import { CountryDataService } from 'src/app/services/country-data.service';
 
 @Component({
   selector: 'app-places',
@@ -16,44 +20,81 @@ export class PlacesComponent {
   @ViewChild('addPlaceModal', { read: TemplateRef })
   addPlaceModal!: TemplateRef<BasicModalComponent>;
 
-  tableData = [
-    {
-      name: 'Cafe oclock',
-      description: 'loremipsumloremipsumloremipsum',
-      phone: '222-332-9865-98',
-    },
-    {
-      name: 'california gym',
-      description: 'loremipsumloremipsumloremipsum',
-      phone: '222-332-9865-98',
-    },
+  placeList!: Place[];
+  tableColumns = [
+    'name',
+    'country',
+    'city',
+    'category',
+    'description',
+    'phone',
   ];
-  tableColumns = ['name', 'description', 'phone'];
-  data = {};
+  countries!: string[];
+  categories!: string[];
 
-  constructor(private modalService: NgbModal) {}
+  place!: Place;
+
+  constructor(
+    private modalService: NgbModal,
+    private placeService: PlaceDataService,
+    private countryService: CountryDataService,
+    private categoryService: CategoryDataService
+  ) {}
+  ngOnInit(): void {
+    this.countryService.getCountries().subscribe(({ data }) => {
+      this.countries = data.map((country) => country.name);
+    });
+    this.categoryService.getCategories().subscribe(({ data }) => {
+      this.categories = data.map((category) => category.name);
+    });
+    this.placeService.getPlaces().subscribe(({ data }) => {
+      this.placeList = data;
+    });
+  }
 
   handleAddEvent() {
     this.modalRef = this.modalService.open(this.addPlaceModal);
   }
-  handleRemoveEvent(data: any) {
+  handleRemoveEvent(data: Place) {
     this.modalRef = this.modalService.open(this.removePlaceModal);
-    this.data = data;
+    this.place = data;
   }
-  handleUpdateEvent(data: any) {
+  handleUpdateEvent(data: Place) {
     this.modalRef = this.modalService.open(this.updatePlaceModal);
-    this.data = data;
+    this.place = data;
   }
 
-  handleAddPlace(data: any) {
-    console.log('your data is added ', data);
+  handleAddPlace(data: Place) {
+    this.placeService.addPlace(data).subscribe(({ data }) => {
+      if (data._id) {
+        this.placeList.push(data);
+        this.closeModal();
+      }
+    });
   }
   handleRemovePlace() {
-    console.log('this data will be removed ', this.data);
+    this.placeService.removePlace(this.place).subscribe(({ data }) => {
+      if (data._id) {
+        this.placeList = this.placeList.filter(
+          (place) => place._id != data._id
+        );
+        this.closeModal();
+      }
+    });
   }
 
-  handleUpdatePlace(data: any) {
-    console.log('this data will be updated ', data);
+  handleUpdatePlace(place: Place) {
+    this.placeService.updatePlace(place).subscribe(({ data }) => {
+      if (data._id) {
+        this.placeList = this.placeList.map((place) => {
+          if (place._id == data._id) {
+            return data;
+          }
+          return place;
+        });
+        this.closeModal();
+      }
+    });
   }
 
   handleCancel() {

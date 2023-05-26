@@ -4,7 +4,7 @@
   </button>
   <div class="w-100 m-5">
     <app-basic-table
-      [tableData]="tableData"
+      [tableData]="placeList"
       [tableColumns]="tableColumns"
       (onRemoveEvent)="handleRemoveEvent($event)"
       (onUpdateEvent)="handleUpdateEvent($event)"
@@ -17,7 +17,9 @@
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Updating place ...</span>
     <app-manage-place
-      [place]="data"
+      [place]="place"
+      [categories]="categories"
+      [countries]="countries"
       (managePlaceEvent)="handleUpdatePlace($event)"
     >
       <span btn-label>Update</span>
@@ -46,7 +48,11 @@
 <ng-template #addPlaceModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Add new place ...</span>
-    <app-manage-place (managePlaceEvent)="handleAddPlace($event)">
+    <app-manage-place
+      (managePlaceEvent)="handleAddPlace($event)"
+      [countries]="countries"
+      [categories]="categories"
+    >
       <span btn-label>Add</span>
     </app-manage-place>
   </app-basic-modal>
