@@ -18,6 +18,7 @@ import { ManagePlaceComponent } from './components/manage-place/manage-place.com
 import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { DisplayObjectPipe } from '../display-object.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
     ManagePlaceComponent,
     SigninComponent,
     HomeComponent,
+    DisplayObjectPipe,
   ],
   imports: [
     CommonModule,

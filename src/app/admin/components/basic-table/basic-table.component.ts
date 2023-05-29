@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-basic-table',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./basic-table.component.css'],
 })
 export class BasicTableComponent {
-  @Input() tableData!: any[];
+  @Input() tableData!: any[] | null;
 
   @Input() tableColumns!: string[];
 

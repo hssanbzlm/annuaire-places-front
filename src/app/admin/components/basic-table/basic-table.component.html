@@ -5,10 +5,10 @@
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="tableData">
     <tr *ngFor="let data of tableData">
-      <td *ngFor="let innerAttribute of tableColumns">
-        {{ data[innerAttribute] }}
+      <td *ngFor="let item of data | keyvalue">
+        {{ item.value | displayObject }}
       </td>
       <td>
         <button
