@@ -34,6 +34,7 @@ export class PlacesComponent {
     'category',
     'description',
     'phone',
+    'date added',
   ];
   countries$!: Observable<string[]>;
   categories$!: Observable<string[]>;

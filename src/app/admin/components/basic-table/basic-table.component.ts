@@ -21,4 +21,7 @@ export class BasicTableComponent {
   onRemove(data: any) {
     this.onRemoveEvent.emit(data);
   }
+  asIsOrder(a: any, b: any) {
+    return 1;
+  }
 }

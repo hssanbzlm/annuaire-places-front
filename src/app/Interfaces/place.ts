@@ -9,5 +9,5 @@ export interface Place {
   category: Category;
   description: string;
   phone: string;
-  dateAdded: Date;
+  dateAdded: string;
 }
