@@ -15,13 +15,14 @@ import { Place } from 'src/app/Interfaces/place';
 })
 export class ManagePlaceComponent {
   @Input() place!: Place;
-  @Input() categories!: string[];
-  @Input() countries!: string[];
+  @Input() categories!: string[] | null;
+  @Input() countries!: string[] | null;
   @Output() managePlaceEvent = new EventEmitter();
   updatedPlace!: Place;
   managePlaceForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
+
   ngOnInit(): void {
     this.updatedPlace = { ...this.place };
     this.initForm();

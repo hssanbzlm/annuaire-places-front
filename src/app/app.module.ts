@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,13 @@ import { AdminModule } from './admin/admin.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './Store';
+import { EffectsModule } from '@ngrx/effects';
+import { CategoriesEffects } from './Store/category/categories.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CountriesEffects } from './Store/country/countries.effects';
+import { PlacesEffects } from './Store/place/places.effetcts';
 
 @NgModule({
   declarations: [
@@ -43,6 +50,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AdminModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([CategoriesEffects, CountriesEffects, PlacesEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
   bootstrap: [AppComponent],

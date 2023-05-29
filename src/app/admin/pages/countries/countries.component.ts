@@ -1,9 +1,11 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
-import { CountryDataService } from 'src/app/services/country-data.service';
 import { Country } from 'src/app/Interfaces/country';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState, selectCountries } from 'src/app/Store';
+import * as CountriesActionsTypes from '../../../Store/country/countries.actions';
 
 @Component({
   selector: 'app-countries',
@@ -18,18 +20,13 @@ export class CountriesComponent {
   removeCountryModal!: TemplateRef<BasicModalComponent>;
   @ViewChild('addCountryModal', { read: TemplateRef })
   addCountryModal!: TemplateRef<BasicModalComponent>;
-  countryList!: Country[];
+  countryList$!: Observable<Country[]>;
   tableColumns = ['name', 'continent', 'description'];
   country!: Country;
 
-  constructor(
-    private modalService: NgbModal,
-    private countryService: CountryDataService
-  ) {}
+  constructor(private modalService: NgbModal, private store: Store<AppState>) {}
   ngOnInit(): void {
-    this.countryService.getCountries().subscribe(({ data }) => {
-      this.countryList = data;
-    });
+    this.countryList$ = this.store.select(selectCountries);
   }
 
   handleAddEvent() {
@@ -45,34 +42,19 @@ export class CountriesComponent {
   }
 
   handleAddCountry(country: Country) {
-    this.countryService.addCountry(country).subscribe(({ data }) => {
-      if (data._id) {
-        this.countryList.push(data);
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(CountriesActionsTypes.addCountry({ country }));
+    this.closeModal();
   }
   handleRemoveCountry() {
-    this.countryService.removeCountry(this.country).subscribe(({ data }) => {
-      if (data._id) {
-        this.countryList = this.countryList.filter(
-          (country) => country._id != data._id
-        );
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(
+      CountriesActionsTypes.removeCountry({ country: this.country })
+    );
+    this.closeModal();
   }
 
   handleUpdateCountry(country: Country) {
-    this.countryService.updateCountry(country).subscribe(({ data }) => {
-      if (data._id) {
-        this.countryList = this.countryList.map((country) => {
-          if (country._id == data._id) return data;
-          return country;
-        });
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(CountriesActionsTypes.updateCountry({ country }));
+    this.closeModal();
   }
 
   handleCancel() {

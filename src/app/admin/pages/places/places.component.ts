@@ -2,9 +2,15 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
 import { Place } from 'src/app/Interfaces/place';
-import { PlaceDataService } from 'src/app/services/place-data.service';
-import { CategoryDataService } from 'src/app/services/category-data.service';
-import { CountryDataService } from 'src/app/services/country-data.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import {
+  AppState,
+  selectCategoriesName,
+  selectCountriesName,
+  selectPlaces,
+} from 'src/app/Store';
+import * as PlacesActionsTypes from '../../../Store/place/places.actions';
 
 @Component({
   selector: 'app-places',
@@ -20,7 +26,7 @@ export class PlacesComponent {
   @ViewChild('addPlaceModal', { read: TemplateRef })
   addPlaceModal!: TemplateRef<BasicModalComponent>;
 
-  placeList!: Place[];
+  placeList$!: Observable<Place[]>;
   tableColumns = [
     'name',
     'country',
@@ -29,27 +35,16 @@ export class PlacesComponent {
     'description',
     'phone',
   ];
-  countries!: string[];
-  categories!: string[];
+  countries$!: Observable<string[]>;
+  categories$!: Observable<string[]>;
 
   place!: Place;
 
-  constructor(
-    private modalService: NgbModal,
-    private placeService: PlaceDataService,
-    private countryService: CountryDataService,
-    private categoryService: CategoryDataService
-  ) {}
+  constructor(private modalService: NgbModal, private store: Store<AppState>) {}
   ngOnInit(): void {
-    this.countryService.getCountries().subscribe(({ data }) => {
-      this.countries = data.map((country) => country.name);
-    });
-    this.categoryService.getCategories().subscribe(({ data }) => {
-      this.categories = data.map((category) => category.name);
-    });
-    this.placeService.getPlaces().subscribe(({ data }) => {
-      this.placeList = data;
-    });
+    this.placeList$ = this.store.select(selectPlaces);
+    this.categories$ = this.store.select(selectCategoriesName);
+    this.countries$ = this.store.select(selectCountriesName);
   }
 
   handleAddEvent() {
@@ -65,36 +60,17 @@ export class PlacesComponent {
   }
 
   handleAddPlace(data: Place) {
-    this.placeService.addPlace(data).subscribe(({ data }) => {
-      if (data._id) {
-        this.placeList.push(data);
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(PlacesActionsTypes.addPlace({ place: data }));
+    this.closeModal();
   }
   handleRemovePlace() {
-    this.placeService.removePlace(this.place).subscribe(({ data }) => {
-      if (data._id) {
-        this.placeList = this.placeList.filter(
-          (place) => place._id != data._id
-        );
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(PlacesActionsTypes.removePlace({ place: this.place }));
+    this.closeModal();
   }
 
   handleUpdatePlace(place: Place) {
-    this.placeService.updatePlace(place).subscribe(({ data }) => {
-      if (data._id) {
-        this.placeList = this.placeList.map((place) => {
-          if (place._id == data._id) {
-            return data;
-          }
-          return place;
-        });
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(PlacesActionsTypes.updatePlace({ place: place }));
+    this.closeModal();
   }
 
   handleCancel() {

@@ -4,7 +4,7 @@
   </button>
   <div class="w-100 m-5">
     <app-basic-table
-      [tableData]="countryList"
+      [tableData]="countryList$ | async"
       [tableColumns]="tableColumns"
       (onRemoveEvent)="handleRemoveEvent($event)"
       (onUpdateEvent)="handleUpdateEvent($event)"

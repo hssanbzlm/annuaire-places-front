@@ -1,10 +1,11 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
-import { CategoryDataService } from 'src/app/services/category-data.service';
 import { Category } from 'src/app/Interfaces/category';
-import { Subscription } from 'rxjs';
-
+import { Store, select } from '@ngrx/store';
+import * as CategoriesActionsTypes from '../../../Store/category/categories.actions';
+import { Observable } from 'rxjs';
+import { AppState, selectCategories } from 'src/app/Store';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -14,7 +15,7 @@ export class CategoriesComponent {
   private modalRef!: NgbModalRef;
 
   category!: Category;
-  categoryList!: Category[];
+  categoryList$!: Observable<Category[]>;
   tableColumns = ['name'];
   @ViewChild('updateCategoryModal', { read: TemplateRef })
   updateCategoryModal!: TemplateRef<BasicModalComponent>;
@@ -23,15 +24,10 @@ export class CategoriesComponent {
   @ViewChild('addCategoryModal', { read: TemplateRef })
   addCategoryModal!: TemplateRef<BasicModalComponent>;
 
-  constructor(
-    private modalService: NgbModal,
-    private categoryService: CategoryDataService
-  ) {}
+  constructor(private modalService: NgbModal, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(({ data }) => {
-      this.categoryList = data;
-    });
+    this.categoryList$ = this.store.pipe(select(selectCategories));
   }
   handleRemoveEvent(category: Category) {
     this.modalRef = this.modalService.open(this.removeCategoryModal);
@@ -46,37 +42,20 @@ export class CategoriesComponent {
     this.modalRef = this.modalService.open(this.addCategoryModal);
   }
   handleAddCategory(category: Category) {
-    this.categoryService.addCategory(category).subscribe(({ data }) => {
-      if (data._id) {
-        this.categoryList.push(data);
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(CategoriesActionsTypes.addCategory({ category }));
+    this.closeModal();
   }
 
   handleRemoveCategory() {
-    this.categoryService.removeCategory(this.category).subscribe(({ data }) => {
-      if (data._id) {
-        this.categoryList = this.categoryList.filter(
-          (category) => category._id != data._id
-        );
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(
+      CategoriesActionsTypes.removeCategory({ category: this.category })
+    );
+    this.closeModal();
   }
 
   handleUpdateCategory(category: Category) {
-    this.categoryService.updateCategory(category).subscribe(({ data }) => {
-      if (data._id) {
-        this.categoryList = this.categoryList.map((category) => {
-          if (category._id == data._id) {
-            return data;
-          }
-          return category;
-        });
-        this.closeModal();
-      }
-    });
+    this.store.dispatch(CategoriesActionsTypes.updateCategory({ category }));
+    this.closeModal();
   }
 
   handleCancel() {

@@ -4,7 +4,7 @@
   </button>
   <div class="w-100 m-5">
     <app-basic-table
-      [tableData]="placeList"
+      [tableData]="placeList$ | async"
       [tableColumns]="tableColumns"
       (onRemoveEvent)="handleRemoveEvent($event)"
       (onUpdateEvent)="handleUpdateEvent($event)"
@@ -18,8 +18,8 @@
     <span title>Updating place ...</span>
     <app-manage-place
       [place]="place"
-      [categories]="categories"
-      [countries]="countries"
+      [categories]="categories$ | async"
+      [countries]="countries$ | async"
       (managePlaceEvent)="handleUpdatePlace($event)"
     >
       <span btn-label>Update</span>
@@ -50,8 +50,8 @@
     <span title>Add new place ...</span>
     <app-manage-place
       (managePlaceEvent)="handleAddPlace($event)"
-      [countries]="countries"
-      [categories]="categories"
+      [countries]="countries$ | async"
+      [categories]="categories$ | async"
     >
       <span btn-label>Add</span>
     </app-manage-place>
