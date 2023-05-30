@@ -58,7 +58,7 @@ export const placesReducer = createReducer(
       return originalPlace;
     }),
   })),
-  on(CountriesActionsTypes.CountryUpdated, (state, { country }) => ({
+  on(CountriesActionsTypes.countryUpdated, (state, { country }) => ({
     error: null,
     waiting: false,
     placeList: state.placeList.map((originalPlace) => {
@@ -76,7 +76,7 @@ export const placesReducer = createReducer(
       return originalPlace;
     }),
   })),
-  on(CountriesActionsTypes.CountryRemoved, (state, { country }) => ({
+  on(CountriesActionsTypes.countryRemoved, (state, { country }) => ({
     error: null,
     waiting: false,
 
