@@ -3,7 +3,10 @@ import {
   createFeatureSelector,
   createSelector,
 } from '@ngrx/store';
-import { categoriesReducer } from './category/categories.reducer';
+import {
+  CategoriesStateShape,
+  categoriesReducer,
+} from './category/categories.reducer';
 import { Category } from '../Interfaces/category';
 import { Country } from '../Interfaces/country';
 import {
@@ -14,7 +17,7 @@ import { PlacesListShape, placesReducer } from './place/places.reducer';
 import { Place } from '../Interfaces/place';
 
 export interface AppState {
-  categories: Category[];
+  categories: CategoriesStateShape;
   countries: CountriesListShape;
   places: PlacesListShape;
 }
@@ -24,7 +27,8 @@ export const reducers: ActionReducerMap<AppState> = {
   places: placesReducer,
 };
 
-export const selectCategories = (state: AppState) => state.categories;
+export const selectCategories = (state: AppState) =>
+  state.categories.categoryList;
 const categoriesNamesMapper = (state: Category[]) =>
   state.map((category) => category.name);
 export const selectCategoriesName = createSelector(
@@ -45,4 +49,9 @@ export const selectPlaces = (state: AppState) => state.places.placeList;
 export const selectRequestState = (state: AppState) => ({
   error: state.places.error,
   waiting: state.places.waiting,
+});
+
+export const selectCategoriesRequestState = (state: AppState) => ({
+  error: state.categories.error,
+  waiting: state.categories.waiting,
 });

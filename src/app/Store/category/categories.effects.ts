@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CategoryDataService } from 'src/app/services/category-data.service';
 import * as CategoriesActionsTypes from './categories.actions';
-import { map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,13 @@ export class CategoriesEffects {
               type: '[Categories] Categories loaded',
               categories: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Categories] Category error',
+              payload: 'Error while loading this category',
+            })
+          )
         );
       })
     );
@@ -39,7 +45,13 @@ export class CategoriesEffects {
               type: '[Categories] Category added',
               category: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Categories] Category error',
+              payload: 'Error while adding this category',
+            })
+          )
         );
       })
     );
@@ -55,7 +67,13 @@ export class CategoriesEffects {
               type: '[Categories] Category removed',
               category: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Categories] Category error',
+              payload: 'Error while removing this category',
+            })
+          )
         );
       })
     );
@@ -71,7 +89,13 @@ export class CategoriesEffects {
               type: '[Categories] Category updated',
               category: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Categories] Category error',
+              payload: 'Error while updating this category',
+            })
+          )
         );
       })
     );

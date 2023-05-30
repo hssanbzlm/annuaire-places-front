@@ -19,6 +19,7 @@
     <app-manage-category
       [category]="category"
       (manageCategoryEvent)="handleUpdateCategory($event)"
+      [requestState]="requestState"
     >
       <span btn-label>Update</span>
     </app-manage-category>
@@ -27,7 +28,15 @@
 <ng-template #removeCategoryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Removing category...</span>
-    Are you sure to delete this category ?
+    <span class="d-flex flex-column justify-content-between" modal-body>
+      Are you sure to delete this category?
+      <div *ngIf="submitted">
+        <span *ngIf="requestState?.error" class="text-danger">
+          {{ requestState.error }}
+        </span>
+        <span *ngIf="requestState?.waiting"> waiting ....</span>
+      </div>
+    </span>
     <span footer>
       <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
         Cancel
@@ -46,7 +55,10 @@
 <ng-template #addCategoryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Add new category ...</span>
-    <app-manage-category (manageCategoryEvent)="handleAddCategory($event)">
+    <app-manage-category
+      (manageCategoryEvent)="handleAddCategory($event)"
+      [requestState]="requestState"
+    >
       <span btn-label>Add</span>
     </app-manage-category>
   </app-basic-modal>

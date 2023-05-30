@@ -9,14 +9,20 @@ import { Category } from 'src/app/Interfaces/category';
 })
 export class ManageCategoryComponent {
   @Input() category!: Category;
+  @Input() requestState!: { error: null | string; waiting: boolean };
+
   @Output() manageCategoryEvent = new EventEmitter();
   updatedCategory!: Category;
   manageCategoryForm!: FormGroup;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.updatedCategory = { ...this.category };
     this.initForm();
+    this.manageCategoryForm.valueChanges.subscribe((v) => {
+      this.submitted = false;
+    });
   }
 
   initForm() {
@@ -43,6 +49,7 @@ export class ManageCategoryComponent {
           }
         : this.manageCategoryForm.value;
       this.manageCategoryEvent.emit(categoryValue);
+      this.submitted = true;
     }
   }
 }

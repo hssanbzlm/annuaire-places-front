@@ -5,7 +5,11 @@ import { Category } from 'src/app/Interfaces/category';
 import { Store, select } from '@ngrx/store';
 import * as CategoriesActionsTypes from '../../../Store/category/categories.actions';
 import { Observable } from 'rxjs';
-import { AppState, selectCategories } from 'src/app/Store';
+import {
+  AppState,
+  selectCategories,
+  selectCategoriesRequestState,
+} from 'src/app/Store';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -17,6 +21,8 @@ export class CategoriesComponent {
   category!: Category;
   categoryList$!: Observable<Category[]>;
   tableColumns = ['name'];
+  requestState!: { error: string | null; waiting: boolean };
+  submitted = false;
   @ViewChild('updateCategoryModal', { read: TemplateRef })
   updateCategoryModal!: TemplateRef<BasicModalComponent>;
   @ViewChild('removeCategoryModal', { read: TemplateRef })
@@ -28,6 +34,14 @@ export class CategoriesComponent {
 
   ngOnInit(): void {
     this.categoryList$ = this.store.pipe(select(selectCategories));
+    this.store
+      .select(selectCategoriesRequestState)
+      .subscribe((requestState) => {
+        this.requestState = requestState;
+        if (!requestState.error && !requestState.waiting && this.submitted) {
+          this.closeModal();
+        }
+      });
   }
   handleRemoveEvent(category: Category) {
     this.modalRef = this.modalService.open(this.removeCategoryModal);
@@ -43,19 +57,19 @@ export class CategoriesComponent {
   }
   handleAddCategory(category: Category) {
     this.store.dispatch(CategoriesActionsTypes.addCategory({ category }));
-    this.closeModal();
+    this.submitted = true;
   }
 
   handleRemoveCategory() {
     this.store.dispatch(
       CategoriesActionsTypes.removeCategory({ category: this.category })
     );
-    this.closeModal();
+    this.submitted = true;
   }
 
   handleUpdateCategory(category: Category) {
     this.store.dispatch(CategoriesActionsTypes.updateCategory({ category }));
-    this.closeModal();
+    this.submitted = true;
   }
 
   handleCancel() {
@@ -63,5 +77,6 @@ export class CategoriesComponent {
   }
   closeModal() {
     this.modalRef.close();
+    this.submitted = false;
   }
 }
