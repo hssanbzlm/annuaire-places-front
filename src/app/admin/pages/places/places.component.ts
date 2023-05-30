@@ -9,7 +9,7 @@ import {
   selectCategoriesName,
   selectCountriesName,
   selectPlaces,
-  selectRequestState,
+  selectPlacesRequestState,
 } from 'src/app/Store';
 import * as PlacesActionsTypes from '../../../Store/place/places.actions';
 
@@ -47,7 +47,7 @@ export class PlacesComponent {
     this.placeList$ = this.store.select(selectPlaces);
     this.categories$ = this.store.select(selectCategoriesName);
     this.countries$ = this.store.select(selectCountriesName);
-    this.store.select(selectRequestState).subscribe((requestState) => {
+    this.store.select(selectPlacesRequestState).subscribe((requestState) => {
       this.requestState = requestState;
       if (!requestState.waiting && !requestState.error && this.submitted) {
         this.closeModal();

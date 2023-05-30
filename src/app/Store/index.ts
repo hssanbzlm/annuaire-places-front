@@ -1,8 +1,4 @@
-import {
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-} from '@ngrx/store';
+import { ActionReducerMap, createSelector } from '@ngrx/store';
 import {
   CategoriesStateShape,
   categoriesReducer,
@@ -14,7 +10,6 @@ import {
   countriesReducer,
 } from './country/countries.reducer';
 import { PlacesListShape, placesReducer } from './place/places.reducer';
-import { Place } from '../Interfaces/place';
 
 export interface AppState {
   categories: CategoriesStateShape;
@@ -35,6 +30,10 @@ export const selectCategoriesName = createSelector(
   selectCategories,
   categoriesNamesMapper
 );
+export const selectCategoriesRequestState = (state: AppState) => ({
+  error: state.categories.error,
+  waiting: state.categories.waiting,
+});
 
 export const selectCountries = (state: AppState) => state.countries.countryList;
 export const selectCountriesName = createSelector(
@@ -46,12 +45,7 @@ export const selectCountriesRequestState = (state: AppState) => ({
   waiting: state.countries.waiting,
 });
 export const selectPlaces = (state: AppState) => state.places.placeList;
-export const selectRequestState = (state: AppState) => ({
+export const selectPlacesRequestState = (state: AppState) => ({
   error: state.places.error,
   waiting: state.places.waiting,
-});
-
-export const selectCategoriesRequestState = (state: AppState) => ({
-  error: state.categories.error,
-  waiting: state.categories.waiting,
 });
