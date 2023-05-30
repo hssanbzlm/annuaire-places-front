@@ -14,12 +14,12 @@ const initialCountriesState: CountriesListShape = {
 };
 export const countriesReducer = createReducer(
   initialCountriesState,
-  on(CountriesActionsTypes.CountriesLoaded, (state, { countries }) => ({
+  on(CountriesActionsTypes.countriesLoaded, (state, { countries }) => ({
     error: null,
     waiting: false,
     countryList: countries,
   })),
-  on(CountriesActionsTypes.CountryAdded, (state, { country }) => ({
+  on(CountriesActionsTypes.countryAdded, (state, { country }) => ({
     error: null,
     waiting: false,
     countryList: [...state.countryList, country],
@@ -34,7 +34,7 @@ export const countriesReducer = createReducer(
     error: null,
     waiting: true,
   })),
-  on(CountriesActionsTypes.CountryRemoved, (state, { country }) => ({
+  on(CountriesActionsTypes.countryRemoved, (state, { country }) => ({
     error: null,
     waiting: false,
     countryList: state.countryList.filter(
@@ -47,7 +47,7 @@ export const countriesReducer = createReducer(
     waiting: true,
   })),
 
-  on(CountriesActionsTypes.CountryUpdated, (state, { country }) => ({
+  on(CountriesActionsTypes.countryUpdated, (state, { country }) => ({
     waiting: false,
     error: null,
     countryList: state.countryList.map((originalCountry) => {
@@ -60,7 +60,7 @@ export const countriesReducer = createReducer(
     error: null,
     waiting: true,
   })),
-  on(CountriesActionsTypes.CountryError, (state, { payload }) => ({
+  on(CountriesActionsTypes.countryError, (state, { payload }) => ({
     ...state,
     error: payload,
     waiting: false,

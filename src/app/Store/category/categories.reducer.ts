@@ -58,7 +58,7 @@ export const categoriesReducer = createReducer(
       return originalCategory;
     }),
   })),
-  on(CategoriesActionsTypes.CategoryError, (state, { payload }) => ({
+  on(CategoriesActionsTypes.categoryError, (state, { payload }) => ({
     ...state,
     error: payload,
     waiting: false,

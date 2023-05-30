@@ -32,7 +32,7 @@ export const categoryAdded = createAction(
   '[Categories] Category added',
   props<{ category: Category }>()
 );
-export const CategoryError = createAction(
+export const categoryError = createAction(
   '[Categories] Category error',
   props<{ payload: string }>()
 );
