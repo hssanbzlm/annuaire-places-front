@@ -7,13 +7,13 @@ import { categoriesReducer } from './category/categories.reducer';
 import { Category } from '../Interfaces/category';
 import { Country } from '../Interfaces/country';
 import { countriesReducer } from './country/countries.reducer';
-import { placesReducer } from './place/places.reducer';
+import { PlacesListShape, placesReducer } from './place/places.reducer';
 import { Place } from '../Interfaces/place';
 
 export interface AppState {
   categories: Category[];
   countries: Country[];
-  places: Place[];
+  places: PlacesListShape;
 }
 export const reducers: ActionReducerMap<AppState> = {
   categories: categoriesReducer,
@@ -34,4 +34,8 @@ export const selectCountriesName = createSelector(
   selectCountries,
   (state: Country[]) => state.map((country) => country.name)
 );
-export const selectPlaces = (state: AppState) => state.places;
+export const selectPlaces = (state: AppState) => state.places.placeList;
+export const selectRequestState = (state: AppState) => ({
+  error: state.places.error,
+  waiting: state.places.waiting,
+});

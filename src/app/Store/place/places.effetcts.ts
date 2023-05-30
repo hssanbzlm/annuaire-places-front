@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PlaceDataService } from 'src/app/services/place-data.service';
 import * as PlacesActionsTypes from './places.actions';
-import { map, mergeMap, of } from 'rxjs';
+import { EMPTY, catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +39,13 @@ export class PlacesEffects {
               type: '[Places] Place added',
               place: data,
             };
-          })
+          }),
+          catchError((error) =>
+            of({
+              type: '[Places] Place error',
+              payload: 'error while adding a new place',
+            })
+          )
         );
       })
     );
@@ -55,7 +61,13 @@ export class PlacesEffects {
               type: '[Places] Place removed',
               place: data,
             };
-          })
+          }),
+          catchError((error) =>
+            of({
+              type: '[Places] Place error',
+              payload: 'Error while removing this place ',
+            })
+          )
         );
       })
     );
@@ -71,7 +83,13 @@ export class PlacesEffects {
               type: '[Places] Place updated',
               place: data,
             };
-          })
+          }),
+          catchError((error) =>
+            of({
+              type: '[Places] Place error',
+              payload: 'Error while updating this place ',
+            })
+          )
         );
       })
     );

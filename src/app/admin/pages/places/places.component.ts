@@ -9,6 +9,7 @@ import {
   selectCategoriesName,
   selectCountriesName,
   selectPlaces,
+  selectRequestState,
 } from 'src/app/Store';
 import * as PlacesActionsTypes from '../../../Store/place/places.actions';
 
@@ -31,21 +32,27 @@ export class PlacesComponent {
     'name',
     'country',
     'city',
-    'category',
     'description',
+    'category',
     'phone',
     'date added',
   ];
   countries$!: Observable<string[]>;
   categories$!: Observable<string[]>;
-
+  requestState!: { error: null | string; waiting: boolean };
   place!: Place;
-
+  submitted = false;
   constructor(private modalService: NgbModal, private store: Store<AppState>) {}
   ngOnInit(): void {
     this.placeList$ = this.store.select(selectPlaces);
     this.categories$ = this.store.select(selectCategoriesName);
     this.countries$ = this.store.select(selectCountriesName);
+    this.store.select(selectRequestState).subscribe((requestState) => {
+      this.requestState = requestState;
+      if (!requestState.waiting && !requestState.error && this.submitted) {
+        this.closeModal();
+      }
+    });
   }
 
   handleAddEvent() {
@@ -61,23 +68,24 @@ export class PlacesComponent {
   }
 
   handleAddPlace(data: Place) {
+    this.submitted = true;
     this.store.dispatch(PlacesActionsTypes.addPlace({ place: data }));
-    this.closeModal();
   }
   handleRemovePlace() {
+    this.submitted = true;
     this.store.dispatch(PlacesActionsTypes.removePlace({ place: this.place }));
-    this.closeModal();
   }
 
   handleUpdatePlace(place: Place) {
+    this.submitted = true;
     this.store.dispatch(PlacesActionsTypes.updatePlace({ place: place }));
-    this.closeModal();
   }
 
   handleCancel() {
     this.closeModal();
   }
   closeModal() {
+    this.submitted = false;
     this.modalRef.close();
   }
 }

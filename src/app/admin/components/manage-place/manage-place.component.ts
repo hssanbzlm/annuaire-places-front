@@ -17,15 +17,20 @@ export class ManagePlaceComponent {
   @Input() place!: Place;
   @Input() categories!: string[] | null;
   @Input() countries!: string[] | null;
+  @Input() requestState!: { error: null | string; waiting: boolean };
   @Output() managePlaceEvent = new EventEmitter();
   updatedPlace!: Place;
   managePlaceForm!: FormGroup;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.updatedPlace = { ...this.place };
     this.initForm();
+    this.managePlaceForm.valueChanges.subscribe((v) => {
+      this.submitted = false;
+    });
   }
 
   initForm() {
@@ -65,6 +70,7 @@ export class ManagePlaceComponent {
           }
         : this.managePlaceForm.value;
       this.managePlaceEvent.emit(placeValue);
+      this.submitted = true;
     }
   }
 }

@@ -34,3 +34,8 @@ export const placeAdded = createAction(
   '[Places] Place added',
   props<{ place: Place }>()
 );
+
+export const placeError = createAction(
+  '[Places] Place error',
+  props<{ payload: string }>()
+);

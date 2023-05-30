@@ -21,6 +21,7 @@
       [categories]="categories$ | async"
       [countries]="countries$ | async"
       (managePlaceEvent)="handleUpdatePlace($event)"
+      [requestState]="requestState"
     >
       <span btn-label>Update</span>
     </app-manage-place>
@@ -29,7 +30,15 @@
 <ng-template #removePlaceModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Removing place...</span>
-    Are you sure to delete this place ?
+    <span class="d-flex flex-column justify-content-between" modal-body>
+      Are you sure to delete this place ?
+      <div *ngIf="submitted">
+        <span *ngIf="requestState?.error" class="text-danger">
+          {{ requestState.error }}
+        </span>
+        <span *ngIf="requestState?.waiting"> waiting ....</span>
+      </div>
+    </span>
     <span footer>
       <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
         Cancel
@@ -52,6 +61,7 @@
       (managePlaceEvent)="handleAddPlace($event)"
       [countries]="countries$ | async"
       [categories]="categories$ | async"
+      [requestState]="requestState"
     >
       <span btn-label>Add</span>
     </app-manage-place>
