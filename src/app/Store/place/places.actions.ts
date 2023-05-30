@@ -1,6 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { Category } from 'src/app/Interfaces/category';
-import { Country } from 'src/app/Interfaces/country';
 import { Place } from 'src/app/Interfaces/place';
 
 export const loadPlaces = createAction('[Places] Load places');
