@@ -19,6 +19,7 @@
     <app-manage-country
       [country]="country"
       (manageCountryEvent)="handleUpdateCountry($event)"
+      [requestState]="requestState"
     >
       <span btn-label>Update</span>
     </app-manage-country>
@@ -27,7 +28,15 @@
 <ng-template #removeCountryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Removing country...</span>
-    Are you sure to delete this country ?
+    <span class="d-flex flex-column justify-content-between" modal-body>
+      Are you sure to delete this place ?
+      <div *ngIf="submitted">
+        <span *ngIf="requestState?.error" class="text-danger">
+          {{ requestState.error }}
+        </span>
+        <span *ngIf="requestState?.waiting"> waiting ....</span>
+      </div>
+    </span>
     <span footer>
       <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
         Cancel
@@ -46,7 +55,10 @@
 <ng-template #addCountryModal>
   <app-basic-modal (closeEvent)="closeModal()">
     <span title>Add new country ...</span>
-    <app-manage-country (manageCountryEvent)="handleAddCountry($event)">
+    <app-manage-country
+      (manageCountryEvent)="handleAddCountry($event)"
+      [requestState]="requestState"
+    >
       <span btn-label>Add</span>
     </app-manage-country>
   </app-basic-modal>

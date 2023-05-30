@@ -4,7 +4,11 @@ import { BasicModalComponent } from '../../components/basic-modal/basic-modal.co
 import { Country } from 'src/app/Interfaces/country';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState, selectCountries } from 'src/app/Store';
+import {
+  AppState,
+  selectCountries,
+  selectCountriesRequestState,
+} from 'src/app/Store';
 import * as CountriesActionsTypes from '../../../Store/country/countries.actions';
 
 @Component({
@@ -23,10 +27,18 @@ export class CountriesComponent {
   countryList$!: Observable<Country[]>;
   tableColumns = ['name', 'continent', 'description'];
   country!: Country;
+  requestState!: { error: string | null; waiting: boolean };
+  submitted = false;
 
   constructor(private modalService: NgbModal, private store: Store<AppState>) {}
   ngOnInit(): void {
     this.countryList$ = this.store.select(selectCountries);
+    this.store.select(selectCountriesRequestState).subscribe((requestState) => {
+      this.requestState = requestState;
+      if (!requestState.error && !requestState.waiting && this.submitted) {
+        this.closeModal();
+      }
+    });
   }
 
   handleAddEvent() {
@@ -43,18 +55,18 @@ export class CountriesComponent {
 
   handleAddCountry(country: Country) {
     this.store.dispatch(CountriesActionsTypes.addCountry({ country }));
-    this.closeModal();
+    this.submitted = true;
   }
   handleRemoveCountry() {
     this.store.dispatch(
       CountriesActionsTypes.removeCountry({ country: this.country })
     );
-    this.closeModal();
+    this.submitted = true;
   }
 
   handleUpdateCountry(country: Country) {
     this.store.dispatch(CountriesActionsTypes.updateCountry({ country }));
-    this.closeModal();
+    this.submitted = true;
   }
 
   handleCancel() {
@@ -62,5 +74,6 @@ export class CountriesComponent {
   }
   closeModal() {
     this.modalRef.close();
+    this.submitted = false;
   }
 }

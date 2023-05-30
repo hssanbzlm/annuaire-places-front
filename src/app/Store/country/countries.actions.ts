@@ -32,3 +32,7 @@ export const CountryAdded = createAction(
   '[Countries] Country added',
   props<{ country: Country }>()
 );
+export const CountryError = createAction(
+  '[Countries] Country error',
+  props<{ payload: string }>()
+);

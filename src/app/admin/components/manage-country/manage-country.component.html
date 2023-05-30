@@ -87,6 +87,12 @@
       </small>
     </span>
   </div>
+  <div *ngIf="submitted">
+    <span *ngIf="requestState?.error" class="text-danger">
+      {{ requestState.error }}
+    </span>
+    <span *ngIf="requestState?.waiting"> waiting ....</span>
+  </div>
   <button
     type="submit"
     class="btn btn-primary mt-3"

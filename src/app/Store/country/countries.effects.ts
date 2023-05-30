@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CountryDataService } from 'src/app/services/country-data.service';
 import * as CountriesActionsTypes from './countries.actions';
-import { map, mergeMap } from 'rxjs';
+import { catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +39,13 @@ export class CountriesEffects {
               type: '[Countries] Country added',
               country: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Countries] Country error',
+              payload: 'Error while adding new country',
+            })
+          )
         );
       })
     );
@@ -55,7 +61,13 @@ export class CountriesEffects {
               type: '[Countries] Country removed',
               country: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Countries] Country error',
+              payload: 'Error while removing this country',
+            })
+          )
         );
       })
     );
@@ -71,7 +83,13 @@ export class CountriesEffects {
               type: '[Countries] Country updated',
               country: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Countries] Country error',
+              payload: 'Error while updating this country',
+            })
+          )
         );
       })
     );

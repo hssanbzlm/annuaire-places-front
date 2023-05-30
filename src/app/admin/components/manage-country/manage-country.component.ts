@@ -11,9 +11,11 @@ import { CountryDataService } from 'src/app/services/country-data.service';
 export class ManageCountryComponent {
   @Input() country!: Country;
   @Output() manageCountryEvent = new EventEmitter();
+  @Input() requestState!: { error: null | string; waiting: boolean };
 
   updatedCountry!: Country;
   manageCountryForm!: FormGroup;
+  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,6 +24,9 @@ export class ManageCountryComponent {
   ngOnInit(): void {
     this.updatedCountry = { ...this.country };
     this.initForm();
+    this.manageCountryForm.valueChanges.subscribe((v) => {
+      this.submitted = false;
+    });
   }
 
   initForm() {
@@ -59,6 +64,7 @@ export class ManageCountryComponent {
         : this.manageCountryForm.value;
 
       this.manageCountryEvent.emit(countryValue);
+      this.submitted = true;
     }
   }
 
