@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AppState } from 'src/app/Store';
 import {
-  AppState,
   numberOfCategories,
   numberOfCategoriesParCountry,
-  numberOfCountries,
+} from 'src/app/Store/category/categories.selectors';
+
+import {
   numberOfPlaces,
   numberOfPlacesParCategory,
   numberOfPlacesParCountry,
-} from 'src/app/Store';
+} from 'src/app/Store/place/places.selectors';
+
+import { numberOfCountries } from 'src/app/Store/country/countries.selectors';
 import {
   pieChartDataType,
   radarChartDataType,

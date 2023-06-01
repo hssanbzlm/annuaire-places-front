@@ -4,13 +4,13 @@ import { BasicModalComponent } from '../../components/basic-modal/basic-modal.co
 import { Place } from 'src/app/Interfaces/place';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/Store';
+import { selectCategoriesName } from 'src/app/Store/category/categories.selectors';
 import {
-  AppState,
-  selectCategoriesName,
-  selectCountriesName,
   selectPlaces,
   selectPlacesRequestState,
-} from 'src/app/Store';
+} from 'src/app/Store/place/places.selectors';
+import { selectCountriesName } from 'src/app/Store/country/countries.selectors';
 import * as PlacesActionsTypes from '../../../Store/place/places.actions';
 
 @Component({

@@ -5,11 +5,11 @@ import { Category } from 'src/app/Interfaces/category';
 import { Store, select } from '@ngrx/store';
 import * as CategoriesActionsTypes from '../../../Store/category/categories.actions';
 import { Observable } from 'rxjs';
+import { AppState } from 'src/app/Store';
 import {
-  AppState,
   selectCategories,
   selectCategoriesRequestState,
-} from 'src/app/Store';
+} from 'src/app/Store/category/categories.selectors';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',

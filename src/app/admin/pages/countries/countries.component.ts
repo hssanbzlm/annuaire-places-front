@@ -4,11 +4,11 @@ import { BasicModalComponent } from '../../components/basic-modal/basic-modal.co
 import { Country } from 'src/app/Interfaces/country';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/Store';
 import {
-  AppState,
   selectCountries,
   selectCountriesRequestState,
-} from 'src/app/Store';
+} from 'src/app/Store/country/countries.selectors';
 import * as CountriesActionsTypes from '../../../Store/country/countries.actions';
 
 @Component({
