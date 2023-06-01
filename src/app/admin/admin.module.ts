@@ -19,6 +19,9 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { DisplayObjectPipe } from '../display-object.pipe';
+import { NgChartsModule } from 'ng2-charts';
+import { StatisticCardComponent } from './components/statistic-card/statistic-card.component';
+import { BaseChartComponent } from './components/base-chart/base-chart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { DisplayObjectPipe } from '../display-object.pipe';
     SigninComponent,
     HomeComponent,
     DisplayObjectPipe,
+    StatisticCardComponent,
+    BaseChartComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +48,7 @@ import { DisplayObjectPipe } from '../display-object.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbTypeaheadModule,
+    NgChartsModule,
   ],
 })
 export class AdminModule {}

@@ -1,1 +1,28 @@
-<p>dashboard works!</p>
+<div class="container">
+  <div class="row">
+    <app-statistic-card
+      class="statistic-card"
+      *ngFor="let item of statisticsData"
+      [title]="item.title"
+      [icon]="item.icon"
+      [value]="item.value | async"
+    />
+  </div>
+  NUMBER OF PLACES PAR COUNTRY
+  <app-base-chart
+    [chartType]="'pie'"
+    [chartData]="numberOfPlacesParCountry$ | async"
+  />
+
+  NUMBER OF PLACES PAR CATEGORY
+  <app-base-chart
+    [chartType]="'pie'"
+    [chartData]="numberOfPlacesParCategory$ | async"
+  />
+
+  NUMBER OF CATEGORIES PAR COUNTRY
+  <app-base-chart
+    [chartType]="'radar'"
+    [chartData]="numberOfCategoryParCountry$ | async"
+  />
+</div>

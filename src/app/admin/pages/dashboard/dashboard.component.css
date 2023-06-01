@@ -1,0 +1,13 @@
+.container{
+    height: 100vh;
+    width: 100vw;
+    padding-top: 40px;
+}
+.row
+{  display: flex; 
+    justify-content: center;
+    gap: 5%;
+}
+.statistic-card{
+    width: auto;
+}
