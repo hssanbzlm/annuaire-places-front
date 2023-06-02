@@ -6,10 +6,18 @@
       Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
     </p>
   </div>
-  <div class="places-container">
-    <app-country-card 
-     *ngFor="let item of listingParCountry$ | async"
-      [listingsParCountry]="item"
-    />
+  <div class="places-container" *ngIf="listingParCountry$ | async as listings">
+    <carousel
+      *ngIf="listings.length"
+      [itemsPerSlide]="itemsPerSlide"
+      [singleSlideOffset]="singleSlideOffset"
+      [interval]="0"
+    >
+      <slide *ngFor="let item of listings">
+        <div class="country-list-container">
+          <app-country-card [listingsParCountry]="item" />
+        </div>
+      </slide>
+    </carousel>
   </div>
 </div>

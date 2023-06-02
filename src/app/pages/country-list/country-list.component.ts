@@ -14,6 +14,9 @@ import {
 })
 export class CountryListComponent {
   listingParCountry$!: Observable<ListingsParCountry[]>;
+  itemsPerSlide = 3;
+  singleSlideOffset = true;
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {

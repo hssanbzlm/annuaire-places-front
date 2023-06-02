@@ -26,6 +26,7 @@ import { CategoriesEffects } from './Store/category/categories.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CountriesEffects } from './Store/country/countries.effects';
 import { PlacesEffects } from './Store/place/places.effetcts';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PlacesEffects } from './Store/place/places.effetcts';
     AppRoutingModule,
     AdminModule,
     HttpClientModule,
+    CarouselModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([CategoriesEffects, CountriesEffects, PlacesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

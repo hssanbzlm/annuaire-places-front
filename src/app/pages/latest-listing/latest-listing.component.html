@@ -6,7 +6,18 @@
       Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
     </p>
   </div>
-  <div class="latest-places-container">
-    <app-listing-card *ngFor="let item of places$ | async" [place]="item" />
+  <div class="latest-places-container" *ngIf="places$ | async as places">
+    <carousel
+      *ngIf="places.length"
+      [itemsPerSlide]="itemsPerSlide"
+      [singleSlideOffset]="singleSlideOffset"
+      [interval]="0"
+    >
+      <slide *ngFor="let item of places">
+        <div class="listing-list-container">
+          <app-listing-card [place]="item" />
+        </div>
+      </slide>
+    </carousel>
   </div>
 </div>

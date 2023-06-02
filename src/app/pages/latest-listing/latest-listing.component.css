@@ -7,9 +7,9 @@
 }
 
 .latest-places-container{
-    width: 70%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .latest-page-text{
@@ -26,4 +26,11 @@
 .latest-page-text>.subtitle{
   font-weight: 900;
   font-size: 30px;
+}
+
+.listing-list-container{
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    height: 350px;
 }

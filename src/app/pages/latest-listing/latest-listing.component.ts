@@ -12,6 +12,8 @@ import { selectPlaces } from 'src/app/Store/place/places.selectors';
 })
 export class LatestListingComponent {
   places$!: Observable<Place[]>;
+  itemsPerSlide = 3;
+  singleSlideOffset = true;
   constructor(private store: Store<AppState>) {}
   ngOnInit(): void {
     this.places$ = this.store.select(selectPlaces);

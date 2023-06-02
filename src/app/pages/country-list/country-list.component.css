@@ -4,13 +4,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
 }
 
 .places-container{
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .popular-page-text{
@@ -27,4 +29,11 @@
 .popular-page-text>.subtitle{
   font-weight: 900;
   font-size: 30px;
+}
+.country-list-container{
+    height: 330px;
+    width: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
