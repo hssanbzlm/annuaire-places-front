@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   faLocationDot,
   faCircleCheck,
@@ -6,6 +6,7 @@ import {
   faUtensils,
   faUserTie,
 } from '@fortawesome/free-solid-svg-icons';
+import { Place } from 'src/app/Interfaces/place';
 
 @Component({
   selector: 'app-listing-card',
@@ -18,4 +19,6 @@ export class ListingCardComponent {
   faPhoneFlip = faPhoneFlip;
   faUtensils = faUtensils;
   faUserTie = faUserTie;
+
+  @Input() place!: Place;
 }

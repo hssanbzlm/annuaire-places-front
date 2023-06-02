@@ -12,25 +12,25 @@
 
   <div class="listing-card-details">
     <div class="listing-card-name">
-      Silver Rose Store
+      {{ place.name }}
       <fa-icon
         [icon]="faCircleCheck"
         class="fa-2xs lighten-main-color"
       ></fa-icon>
     </div>
     <div class="listing-card-description secondary-color">
-      Lorem ipsum Lorem Ipsum
+      {{ place.description }}
     </div>
     <div class="listing-card-location secondary-color">
       <fa-icon
         [icon]="faLocationDot"
         class="fa-2xs lighten-main-color"
       ></fa-icon>
-      80 Broklyn Street USA
+      {{ place.city }}
     </div>
     <div class="secondary-color">
       <fa-icon [icon]="faPhoneFlip" class="fa-2xs lighten-main-color"></fa-icon>
-      92 666 888 0000
+      {{ place.phone }}
     </div>
   </div>
 </div>

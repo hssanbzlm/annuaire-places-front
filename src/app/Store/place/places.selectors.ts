@@ -38,3 +38,20 @@ export const numberOfPlacesParCategory = (state: AppState) => {
   });
   return result;
 };
+
+export interface ListingsParCountry {
+  country: string;
+  listings: number;
+}
+
+export const numberOfListingParCountry = (state: AppState) => {
+  return state.places.placeList.reduce((acc: ListingsParCountry[], curr) => {
+    let index = acc.findIndex((v) => v.country == curr.country.name);
+    if (index > -1) {
+      acc[index].listings++;
+    } else {
+      acc.push({ country: curr.country.name, listings: 1 });
+    }
+    return acc;
+  }, []);
+};

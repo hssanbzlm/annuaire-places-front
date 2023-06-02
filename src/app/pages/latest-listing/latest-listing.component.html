@@ -7,8 +7,6 @@
     </p>
   </div>
   <div class="latest-places-container">
-    <app-listing-card />
-    <app-listing-card />
-    <app-listing-card />
+    <app-listing-card *ngFor="let item of places$ | async" [place]="item" />
   </div>
 </div>

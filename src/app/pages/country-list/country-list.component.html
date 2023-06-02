@@ -7,10 +7,9 @@
     </p>
   </div>
   <div class="places-container">
-    <app-country-card />
-    <app-country-card />
-    <app-country-card />
-    <app-country-card />
-    <app-country-card />
+    <app-country-card 
+     *ngFor="let item of listingParCountry$ | async"
+      [listingsParCountry]="item"
+    />
   </div>
 </div>
