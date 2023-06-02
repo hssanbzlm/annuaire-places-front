@@ -1,6 +1,14 @@
-<div class="categories-container">
-  <app-category-card />
-  <app-category-card />
-  <app-category-card />
-  <app-category-card />
+<div class="categories-container" *ngIf="categoryList$ | async as categoryList">
+  <carousel
+    *ngIf="categoryList.length"
+    [itemsPerSlide]="itemsPerSlide"
+    [singleSlideOffset]="singleSlideOffset"
+    [interval]="0"
+  >
+    <slide *ngFor="let category of categoryList" class="slider">
+      <div class="category-list-container">
+        <app-category-card [category]="category" />
+      </div>
+    </slide>
+  </carousel>
 </div>
