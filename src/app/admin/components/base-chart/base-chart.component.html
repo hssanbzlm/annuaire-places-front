@@ -1,8 +1,13 @@
-<canvas
-  baseChart
-  class="chart"
-  [data]="chartData"
-  [type]="chartType"
-  [options]="chartOptions"
+<div
+  class="d-flex flex-column align-items-center justify-content-center p-2 chart-border"
 >
-</canvas>
+  <div class="chart-title">{{ chartTitle }}</div>
+  <canvas
+    baseChart
+    class="chart"
+    [data]="chartData"
+    [type]="chartType"
+    [options]="chartOptions"
+  >
+  </canvas>
+</div>

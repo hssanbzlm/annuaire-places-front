@@ -7,6 +7,8 @@ import { ChartConfiguration } from 'chart.js';
   styleUrls: ['./base-chart.component.css'],
 })
 export class BaseChartComponent {
+  @Input() chartTitle!: string;
+
   @Input() chartType!: any;
   @Input() chartData!: any;
   public chartOptions: ChartConfiguration['options'] = {

@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row">
+<div class="container d-flex flex-column align-items-center">
+  <div class="row d-flex justify-content-center pt-3">
     <app-statistic-card
       class="statistic-card"
       *ngFor="let item of statisticsData"
@@ -8,21 +8,31 @@
       [value]="item.value | async"
     />
   </div>
-  NUMBER OF PLACES PAR COUNTRY
-  <app-base-chart
-    [chartType]="'pie'"
-    [chartData]="numberOfPlacesParCountry$ | async"
-  />
+  <div class="row w-100 mt-4">
+    <div class="col p-2">
+      <app-base-chart
+        [chartTitle]="'Number of places par country'"
+        [chartType]="'pie'"
+        [chartData]="numberOfPlacesParCountry$ | async"
+      />
+    </div>
 
-  NUMBER OF PLACES PAR CATEGORY
-  <app-base-chart
-    [chartType]="'pie'"
-    [chartData]="numberOfPlacesParCategory$ | async"
-  />
+    <div class="col p-2">
+      <app-base-chart
+        [chartTitle]="'Number of places par category'"
+        [chartType]="'pie'"
+        [chartData]="numberOfPlacesParCategory$ | async"
+      />
+    </div>
+  </div>
 
-  NUMBER OF CATEGORIES PAR COUNTRY
-  <app-base-chart
-    [chartType]="'radar'"
-    [chartData]="numberOfCategoryParCountry$ | async"
-  />
+  <div class="row w-100 mt-1 mb-5">
+    <div class="col p-2">
+      <app-base-chart
+        [chartTitle]="'Number of categories par country'"
+        [chartType]="'radar'"
+        [chartData]="numberOfCategoryParCountry$ | async"
+      />
+    </div>
+  </div>
 </div>
