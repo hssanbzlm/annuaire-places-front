@@ -1,33 +1,35 @@
-<table class="table table-striped mx-auto my-4 w-100">
-  <thead>
-    <tr>
-      <th *ngFor="let column of tableColumns" scope="col">{{ column }}</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="tableData">
-    <tr *ngFor="let data of tableData">
-      <ng-container *ngFor="let item of data | keyvalue : asIsOrder">
-        <td *ngIf="item.key != '_id' && item.key != '__v'">
-          {{ item.value | displayObject }}
+<div class="table-responsive">
+  <table class="table table-striped mx-auto my-4 w-100">
+    <thead>
+      <tr>
+        <th *ngFor="let column of tableColumns" scope="col">{{ column }}</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="tableData">
+      <tr *ngFor="let data of tableData">
+        <ng-container *ngFor="let item of data | keyvalue : asIsOrder">
+          <td *ngIf="item.key != '_id' && item.key != '__v'">
+            {{ item.value | displayObject }}
+          </td>
+        </ng-container>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-primary me-2"
+            (click)="onUpdate(data)"
+          >
+            Update
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="onRemove(data)"
+          >
+            Remove
+          </button>
         </td>
-      </ng-container>
-      <td>
-        <button
-          type="button"
-          class="btn btn-outline-primary me-2"
-          (click)="onUpdate(data)"
-        >
-          Update
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-danger"
-          (click)="onRemove(data)"
-        >
-          Remove
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
+</div>

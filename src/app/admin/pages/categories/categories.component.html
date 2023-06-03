@@ -1,8 +1,8 @@
-<div class="mt-5">
+<div class="mt-5 container">
   <button type="button" class="btn btn-primary" (click)="handleAddEvent()">
     Add category
   </button>
-  <div class="w-100 m-5">
+  <div class="mt-5">
     <app-basic-table
       [tableData]="categoryList$ | async"
       [tableColumns]="tableColumns"

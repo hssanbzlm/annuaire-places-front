@@ -1,8 +1,8 @@
-<div class="mt-5">
+<div class="mt-5 container">
   <button type="button" class="btn btn-primary" (click)="handleAddEvent()">
     Add place
   </button>
-  <div class="w-100 m-5">
+  <div class="mt-5">
     <app-basic-table
       [tableData]="placeList$ | async"
       [tableColumns]="tableColumns"
