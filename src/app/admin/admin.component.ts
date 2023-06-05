@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faDashboard,
   faUser,
@@ -14,5 +15,7 @@ import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(config: NgbModalConfig) {}
+  constructor(router: Router) {
+    router.navigateByUrl('admin/home');
+  }
 }
