@@ -7,7 +7,6 @@ import {
   faComment,
   faFaceAngry,
 } from '@fortawesome/free-solid-svg-icons';
-import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -22,11 +21,7 @@ export class HomeComponent {
   famapLocationDot = faMapLocationDot;
   faComment = faComment;
   fafaceAngry = faFaceAngry;
-  constructor(config: NgbModalConfig, private authService: AuthService) {
-    //app modals configuration
-    config.backdrop = 'static';
-    config.centered = true;
-  }
+  constructor(private authService: AuthService) {}
 
   logout() {
     this.authService.logout();

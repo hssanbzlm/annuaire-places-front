@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  faDashboard,
-  faUser,
-  faEarthEurope,
-  faMapLocationDot,
-  faComment,
-  faFaceAngry,
-} from '@fortawesome/free-solid-svg-icons';
 import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-admin',
@@ -15,7 +7,10 @@ import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent {
-  constructor(router: Router) {
+  constructor(router: Router, config: NgbModalConfig) {
     router.navigateByUrl('admin/home');
+    //app modals configuration
+    config.backdrop = 'static';
+    config.centered = true;
   }
 }
