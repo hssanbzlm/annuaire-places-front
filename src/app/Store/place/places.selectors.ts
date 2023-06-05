@@ -1,15 +1,15 @@
 import { AppState } from '..';
 import { createSelector } from '@ngrx/store';
 import {
+  comparePlaceByDate,
   numberOfListingParCountryHelper,
   numberOfPlacesParCategoryHelper,
   numberOfPlacesParCountryHelper,
 } from 'src/app/helpers/helpers';
 
-export const selectPlaces = createSelector(
-  (state: AppState) => state.places.placeList,
-  (result) => result
-);
+export const selectPlaces = createSelector(comparePlaceByDate, (result) => {
+  return result;
+});
 export const selectPlacesRequestState = createSelector(
   (state: AppState) => ({
     error: state.places.error,
