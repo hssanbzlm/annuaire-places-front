@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Category } from './Interfaces/category';
-import { Country } from './Interfaces/country';
+import { Category } from '../../Interfaces/category';
+import { Country } from '../../Interfaces/country';
 
 @Pipe({
   name: 'displayObject',
