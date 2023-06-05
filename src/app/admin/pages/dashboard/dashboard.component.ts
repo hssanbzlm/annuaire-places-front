@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/Store';
 import {
   numberOfCategories,
-  numberOfCategoriesParCountry,
+  numberofCategoriesParCountry,
 } from 'src/app/Store/category/categories.selectors';
 
 import {
@@ -49,7 +49,7 @@ export class DashboardComponent {
       numberOfPlacesParCategory
     );
     this.numberOfCategoryParCountry$ = this.store.select(
-      numberOfCategoriesParCountry
+      numberofCategoriesParCountry
     );
 
     this.statisticsData = [

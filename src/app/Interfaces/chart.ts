@@ -7,3 +7,8 @@ export interface radarChartDataType {
   labels: string[];
   datasets: [{ data: number[]; label: string }];
 }
+
+export interface ListingsParCountry {
+  country: string;
+  listings: number;
+}
