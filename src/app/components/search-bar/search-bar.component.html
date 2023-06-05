@@ -1,23 +1,25 @@
 <div class="search-bar-container">
-  <input
-    placeholder="What are you looking for"
-    type="text"
-    class="search-preferences attribute-appearence secondary-color secondary-border"
-  />
-  <select
-    class="search-location attribute-appearence secondary-color secondary-border"
-  >
-    <option value="" disabled selected>Location</option>
-    <option value="//">//</option>
-    <option value="//">//</option>
-  </select>
-  <select
-    class="search-categories attribute-appearence secondary-color secondary-border"
-  >
-    <option value="" disabled selected>All categories</option>
-    <option value="//">//</option>
-    <option value="//">//</option>
-  </select>
+  <div class="input-container">
+    <input
+      placeholder="What are you looking for"
+      type="text"
+      class="search-preferences attribute-appearence secondary-color secondary-border"
+    />
+    <select
+      class="search-location attribute-appearence secondary-color secondary-border"
+    >
+      <option value="" disabled selected>Location</option>
+      <option value="//">//</option>
+      <option value="//">//</option>
+    </select>
+    <select
+      class="search-categories attribute-appearence secondary-color secondary-border"
+    >
+      <option value="" disabled selected>All categories</option>
+      <option value="//">//</option>
+      <option value="//">//</option>
+    </select>
+  </div>
   <button class="search-btn main-background-color">
     <fa-icon
       [icon]="faMagnifyingGlass"

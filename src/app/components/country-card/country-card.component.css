@@ -3,6 +3,7 @@
     height: 280px;
     background-image: url('../../../assets/London_Big_Ben_Phone_box.jpg');
     border-radius: 10px;
+    padding-top: 5px;
 }
 .gradient-style{
     display: flex;
@@ -14,17 +15,25 @@
     border-radius: 10px;
 }
 .card-title{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     color: white;
 }
 .listing-container{
-    position:relative;
-    bottom: 10px;
+    position: absolute;
+    top: 0px;
     left: 20px;
     width: 80px;
     font-size: 12px;
     color: white;
     border-radius: 3px;
     padding-left: 5px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .country-card-container{
+        width: 100px;
+        height: 180px;
+    }
 }

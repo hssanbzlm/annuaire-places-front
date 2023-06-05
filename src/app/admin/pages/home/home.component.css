@@ -54,7 +54,4 @@ li{
     .sidebar-container{
         justify-content: center;
     }
-    a,.logout-container{
-        font-size: 0.6rem;
-    }
 }

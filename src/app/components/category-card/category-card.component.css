@@ -10,6 +10,11 @@
 
 }
 
-.category-icon{
-    padding: 10px;
-}
+@media only screen and (max-width: 970px) {
+
+    .category-card-container{
+        height: 100px;
+        width: 100px;
+    }
+  }
+  

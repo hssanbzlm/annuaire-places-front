@@ -10,3 +10,9 @@
     justify-content: center;
 
 }
+
+@media only screen and (max-width: 450px){
+    .categories-page-container{
+        bottom: 150px;
+    }
+}

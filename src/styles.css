@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
   }
-
   .main-background-color{
     background-color: rgb(161, 76, 6);
   }
@@ -45,4 +44,27 @@ body {
   .custom-popup{    
     max-height: 180px;
     overflow: auto;
+}
+
+.carousel-indicators>button{
+  background-color: rgb(161, 76, 6) !important;
+
+}
+
+.carousel-indicators{
+  position: absolute;
+  bottom: -50px;
+}
+.carousel-control-next-icon,.carousel-control-prev-icon{
+  background-color: rgb(161, 76, 6);
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+@media only screen and (max-width: 970px) {
+
+  body,.btn{
+    font-size: 11px;
+  }
 }

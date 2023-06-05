@@ -15,4 +15,20 @@
 }
 .options-container{
     width: 25%;
+    text-align: right;
+}
+
+
+@media only screen and (max-width: 450px) {
+    .head-container,.nav-container{
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+    .options-container{
+        text-align: left;
+    }
+    .logo-container,.options-container{
+        width: auto
+    }
 }

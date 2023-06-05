@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-striped mx-auto my-4 w-100">
+  <table class="table table-striped text-center mx-auto my-4 w-100">
     <thead>
       <tr>
         <th *ngFor="let column of tableColumns" scope="col">{{ column }}</th>
@@ -13,10 +13,10 @@
             {{ item.value | displayObject }}
           </td>
         </ng-container>
-        <td>
+        <td class="d-flex justify-content-center">
           <button
             type="button"
-            class="btn btn-outline-primary me-2"
+            class="btn btn-outline-primary me-1"
             (click)="onUpdate(data)"
           >
             Update
