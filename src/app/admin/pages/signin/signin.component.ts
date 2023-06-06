@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SigninComponent {
   signinForm!: FormGroup;
+  submitted = false;
+  error = false;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -18,6 +20,9 @@ export class SigninComponent {
 
   ngOnInit(): void {
     this.initForm();
+    this.signinForm.valueChanges.subscribe((v) => {
+      if (this.submitted) this.submitted = false;
+    });
   }
 
   initForm() {
@@ -28,6 +33,8 @@ export class SigninComponent {
   }
 
   onSubmit() {
+    this.submitted = true;
+    this.error = false;
     if (this.signinForm.invalid) {
       return;
     } else {
@@ -36,8 +43,8 @@ export class SigninComponent {
           localStorage.setItem('jwt-annuaire-places', data.token);
           this.router.navigate(['admin/home']);
         },
-        error: (err) => {
-          //handle error
+        error: () => {
+          this.error = true;
         },
       });
     }
