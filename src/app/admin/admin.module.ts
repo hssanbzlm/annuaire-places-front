@@ -22,6 +22,7 @@ import { DisplayObjectPipe } from './pipes/display-object.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { StatisticCardComponent } from './components/statistic-card/statistic-card.component';
 import { BaseChartComponent } from './components/base-chart/base-chart.component';
+import { BasicCardComponent } from './components/basic-card/basic-card.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BaseChartComponent } from './components/base-chart/base-chart.component
     DisplayObjectPipe,
     StatisticCardComponent,
     BaseChartComponent,
+    BasicCardComponent,
   ],
   imports: [
     CommonModule,

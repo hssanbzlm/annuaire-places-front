@@ -8,7 +8,7 @@
       [value]="item.value | async"
     />
   </div>
-  <div class="row w-100 mt-4">
+  <div class="row w-100 mt-4" *ngIf="numberOfPlaces$ | async">
     <div class="col p-2">
       <app-base-chart
         [chartTitle]="'Number of places par country'"
@@ -27,12 +27,25 @@
   </div>
 
   <div class="row w-100 mt-1 mb-5">
-    <div class="col p-2">
-      <app-base-chart
-        [chartTitle]="'Number of categories par country'"
-        [chartType]="'radar'"
-        [chartData]="numberOfCategoryParCountry$ | async"
-      />
+    <div
+      class="col p-2"
+      *ngIf="numberOfCategoryParCountry$ | async as charData"
+    >
+      <ng-container
+        *ngIf="charData.labels.length == 0; else secondChartTemplate"
+      >
+        <app-basic-card
+          [cardType]="'bg-info'"
+          [cardText]="'No chart available'"
+        />
+      </ng-container>
+      <ng-template #secondChartTemplate>
+        <app-base-chart
+          [chartTitle]="'Number of categories par country'"
+          [chartType]="'radar'"
+          [chartData]="numberOfCategoryParCountry$ | async"
+        />
+      </ng-template>
     </div>
   </div>
 </div>

@@ -2,14 +2,22 @@
   <button type="button" class="btn btn-primary" (click)="handleAddEvent()">
     Add country
   </button>
-  <div class="mt-5">
-    <app-basic-table
-      [tableData]="countryList$ | async"
-      [tableColumns]="tableColumns"
-      (onRemoveEvent)="handleRemoveEvent($event)"
-      (onUpdateEvent)="handleUpdateEvent($event)"
-    >
-    </app-basic-table>
+  <div class="mt-5" *ngIf="countryList$ | async as countryList">
+    <ng-container *ngIf="countryList.length == 0; else dataTemplate">
+      <app-basic-card
+        [cardText]="'We dont have countries for now'"
+        [cardType]="'bg-info'"
+      />
+    </ng-container>
+    <ng-template #dataTemplate>
+      <app-basic-table
+        [tableData]="countryList$ | async"
+        [tableColumns]="tableColumns"
+        (onRemoveEvent)="handleRemoveEvent($event)"
+        (onUpdateEvent)="handleUpdateEvent($event)"
+      >
+      </app-basic-table>
+    </ng-template>
   </div>
 </div>
 
