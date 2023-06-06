@@ -16,9 +16,10 @@ import { storeData } from '../fake-store-data';
 fdescribe('Places ', () => {
   let store: MockStore;
 
-  const initialState: AppState = storeData;
+  let initialState: AppState;
 
   beforeEach(() => {
+    initialState = storeData;
     TestBed.configureTestingModule({
       imports: [],
       providers: [provideMockStore({ initialState })],
