@@ -1,12 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  Observable,
-  debounceTime,
-  distinctUntilChanged,
-  first,
-  map,
-} from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Place } from '../Interfaces/place';
 

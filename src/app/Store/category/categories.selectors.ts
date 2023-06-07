@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import { Category } from 'src/app/Interfaces/category';
 import { AppState } from '..';
 import { numberOfCategoriesParCountry } from 'src/app/helpers/helpers';

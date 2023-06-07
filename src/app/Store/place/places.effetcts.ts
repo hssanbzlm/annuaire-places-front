@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PlaceDataService } from 'src/app/services/place-data.service';
 import * as PlacesActionsTypes from './places.actions';
-import { EMPTY, catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, take } from 'rxjs';
+import { first } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../Interfaces/user';
 import { Router } from '@angular/router';
