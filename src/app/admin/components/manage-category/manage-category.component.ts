@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Category } from 'src/app/Interfaces/category';
 
 @Component({
@@ -15,14 +16,17 @@ export class ManageCategoryComponent {
   updatedCategory!: Category;
   manageCategoryForm!: FormGroup;
   submitted = false;
+  formChangesSub!: Subscription;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.updatedCategory = { ...this.category };
     this.initForm();
-    this.manageCategoryForm.valueChanges.subscribe((v) => {
-      this.submitted = false;
-    });
+    this.formChangesSub = this.manageCategoryForm.valueChanges.subscribe(
+      (v) => {
+        if (this.submitted) this.submitted = false;
+      }
+    );
   }
 
   initForm() {
@@ -51,5 +55,9 @@ export class ManageCategoryComponent {
       this.manageCategoryEvent.emit(categoryValue);
       this.submitted = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    if (this.formChangesSub) this.formChangesSub.unsubscribe();
   }
 }

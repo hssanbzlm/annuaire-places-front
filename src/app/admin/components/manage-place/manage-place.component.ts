@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Place } from 'src/app/Interfaces/place';
 
 @Component({
@@ -22,14 +23,15 @@ export class ManagePlaceComponent {
   updatedPlace!: Place;
   managePlaceForm!: FormGroup;
   submitted = false;
+  formChangesSub!: Subscription;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.updatedPlace = { ...this.place };
     this.initForm();
-    this.managePlaceForm.valueChanges.subscribe((v) => {
-      this.submitted = false;
+    this.formChangesSub = this.managePlaceForm.valueChanges.subscribe((v) => {
+      if (this.submitted) this.submitted = false;
     });
   }
 
@@ -72,5 +74,8 @@ export class ManagePlaceComponent {
       this.managePlaceEvent.emit(placeValue);
       this.submitted = true;
     }
+  }
+  ngOnDestroy(): void {
+    if (this.formChangesSub) this.formChangesSub.unsubscribe();
   }
 }

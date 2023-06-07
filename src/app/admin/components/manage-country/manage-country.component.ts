@@ -1,6 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable, OperatorFunction, debounceTime, map } from 'rxjs';
+import {
+  Observable,
+  OperatorFunction,
+  Subscription,
+  debounceTime,
+  map,
+} from 'rxjs';
 import { Country, continentType } from 'src/app/Interfaces/country';
 import { CountryDataService } from 'src/app/services/country-data.service';
 @Component({
@@ -24,6 +30,7 @@ export class ManageCountryComponent {
   updatedCountry!: Country;
   manageCountryForm!: FormGroup;
   submitted = false;
+  formChangesSub!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,8 +39,8 @@ export class ManageCountryComponent {
   ngOnInit(): void {
     this.updatedCountry = { ...this.country };
     this.initForm();
-    this.manageCountryForm.valueChanges.subscribe((v) => {
-      this.submitted = false;
+    this.formChangesSub = this.manageCountryForm.valueChanges.subscribe((v) => {
+      if (this.submitted) this.submitted = false;
     });
   }
 
@@ -87,4 +94,8 @@ export class ManageCountryComponent {
       })
     );
   };
+
+  ngOnDestroy(): void {
+    if (this.formChangesSub) this.formChangesSub.unsubscribe();
+  }
 }
