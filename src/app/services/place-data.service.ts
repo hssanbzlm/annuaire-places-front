@@ -15,33 +15,37 @@ import { Place } from '../Interfaces/place';
 })
 export class PlaceDataService {
   private url = `${environment.baseUrl}/place`;
-  private header = new HttpHeaders().set(
-    'Authorization',
-    `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
-  );
   constructor(private http: HttpClient) {}
-
+  private createHeader() {
+    return new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
+    );
+  }
   getPlaces(): Observable<{ data: Place[] }> {
     return this.http.get<{ data: Place[] }>(this.url).pipe(first());
   }
 
   addPlace(place: Place): Observable<{ data: Place }> {
+    const header = this.createHeader();
     return this.http
-      .post<{ data: Place }>(`${this.url}/add`, place, { headers: this.header })
+      .post<{ data: Place }>(`${this.url}/add`, place, { headers: header })
       .pipe(first());
   }
   removePlace(place: Place): Observable<{ data: Place }> {
+    const header = this.createHeader();
     return this.http
       .delete<{ data: Place }>(`${this.url}/remove`, {
         body: place,
-        headers: this.header,
+        headers: header,
       })
       .pipe(first());
   }
   updatePlace(place: Place): Observable<{ data: Place }> {
+    const header = this.createHeader();
     return this.http
       .put<{ data: Place }>(`${this.url}/update`, place, {
-        headers: this.header,
+        headers: header,
       })
       .pipe(first());
   }

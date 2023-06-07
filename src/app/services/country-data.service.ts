@@ -16,35 +16,43 @@ import { Country } from '../Interfaces/country';
 })
 export class CountryDataService {
   private url = `${environment.baseUrl}/country`;
-  private header = new HttpHeaders().set(
-    'Authorization',
-    `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
-  );
   constructor(private http: HttpClient) {}
+
+  private createHeader() {
+    return new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
+    );
+  }
   getCountries(): Observable<{ data: Country[] }> {
     return this.http.get<{ data: Country[] }>(this.url).pipe(first());
   }
 
   addCountry(country: Country): Observable<{ data: Country }> {
+    const header = this.createHeader();
     return this.http
       .post<{ data: Country }>(`${this.url}/add`, country, {
-        headers: this.header,
+        headers: header,
       })
       .pipe(first());
   }
 
   updateCountry(country: Country): Observable<{ data: Country }> {
+    const header = this.createHeader();
+
     return this.http
       .put<{ data: Country }>(`${this.url}/update`, country, {
-        headers: this.header,
+        headers: header,
       })
       .pipe(first());
   }
 
   removeCountry(country: Country): Observable<{ data: Country }> {
+    const header = this.createHeader();
+
     return this.http
       .delete<{ data: Country }>(`${this.url}/remove`, {
-        headers: this.header,
+        headers: header,
         body: country,
       })
       .pipe(first());
