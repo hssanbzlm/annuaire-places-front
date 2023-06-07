@@ -12,6 +12,7 @@ export class SigninComponent {
   signinForm!: FormGroup;
   submitted = false;
   error = false;
+  waiting = false;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -35,16 +36,19 @@ export class SigninComponent {
   onSubmit() {
     this.submitted = true;
     this.error = false;
+    this.waiting = true;
     if (this.signinForm.invalid) {
       return;
     } else {
       this.authService.signin(this.signinForm.value).subscribe({
         next: (data) => {
+          this.waiting = false;
           localStorage.setItem('jwt-annuaire-places', data.token);
           this.router.navigate(['admin/home']);
         },
         error: () => {
           this.error = true;
+          this.waiting = false;
         },
       });
     }

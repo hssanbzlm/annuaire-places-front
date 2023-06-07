@@ -67,13 +67,17 @@
     <span *ngIf="requestState?.error" class="text-danger">
       {{ requestState.error }}
     </span>
-    <span *ngIf="requestState?.waiting"> waiting ....</span>
   </div>
-  <button
-    type="submit"
-    class="btn btn-primary mt-3"
-    [disabled]="manageCountryForm.invalid || requestState.waiting"
-  >
-    <ng-content select="[btn-label]"></ng-content>
-  </button>
+  <div class="d-flex justify-content-start mt-3">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="manageCountryForm.invalid || requestState.waiting"
+    >
+      <ng-content select="[btn-label]"></ng-content>
+    </button>
+    <div class="mx-2" *ngIf="submitted && requestState.waiting">
+      <app-base-spinner [spinnerType]="'text-primary'" />
+    </div>
+  </div>
 </form>

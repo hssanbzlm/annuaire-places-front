@@ -23,6 +23,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { StatisticCardComponent } from './components/statistic-card/statistic-card.component';
 import { BaseChartComponent } from './components/base-chart/base-chart.component';
 import { BasicCardComponent } from './components/basic-card/basic-card.component';
+import { BaseSpinnerComponent } from './components/base-spinner/base-spinner.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { BasicCardComponent } from './components/basic-card/basic-card.component
     StatisticCardComponent,
     BaseChartComponent,
     BasicCardComponent,
+    BaseSpinnerComponent,
   ],
   imports: [
     CommonModule,

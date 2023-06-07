@@ -44,10 +44,9 @@
         <span *ngIf="requestState?.error" class="text-danger">
           {{ requestState.error }}
         </span>
-        <span *ngIf="requestState?.waiting"> waiting ....</span>
       </div>
     </span>
-    <span footer>
+    <span class="w-100 d-flex" footer>
       <button type="button" class="btn btn-light me-2" (click)="handleCancel()">
         Cancel
       </button>
@@ -59,6 +58,11 @@
       >
         Remove
       </button>
+      <app-base-spinner
+        *ngIf="submitted && requestState.waiting"
+        [spinnerType]="'text-secondary'"
+        class="mx-2"
+      />
     </span>
   </app-basic-modal>
 </ng-template>
