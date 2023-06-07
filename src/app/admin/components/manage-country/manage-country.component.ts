@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, OperatorFunction, debounceTime, map } from 'rxjs';
-import { Country } from 'src/app/Interfaces/country';
+import { Country, continentType } from 'src/app/Interfaces/country';
 import { CountryDataService } from 'src/app/services/country-data.service';
 @Component({
   selector: 'app-manage-country',
@@ -13,6 +13,14 @@ export class ManageCountryComponent {
   @Output() manageCountryEvent = new EventEmitter();
   @Input() requestState!: { error: null | string; waiting: boolean };
 
+  continentList: continentType[] = [
+    'Africa',
+    'America',
+    'Antarctica',
+    'Asia',
+    'Europe',
+    'Oceania',
+  ];
   updatedCountry!: Country;
   manageCountryForm!: FormGroup;
   submitted = false;
@@ -32,15 +40,7 @@ export class ManageCountryComponent {
   initForm() {
     this.manageCountryForm = this.formBuilder.group({
       name: [this.updatedCountry.name, [Validators.required]],
-      continent: [
-        this.updatedCountry.continent,
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(15),
-          Validators.pattern(/^[A-Za-z]+$/),
-        ],
-      ],
+      continent: [this.updatedCountry.continent, [Validators.required]],
       description: [
         this.updatedCountry.description,
         [

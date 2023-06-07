@@ -25,35 +25,11 @@
   </div>
   <div class="form-group mt-2">
     <label for="continent">Continent</label>
-    <input
-      type="text"
-      class="form-control mt-1"
-      placeholder="Continent"
-      formControlName="continent"
-    />
-    <span
-      class="d-flex flex-column"
-      *ngIf="manageCountryForm.get('continent')?.dirty"
-    >
-      <small
-        class="form-text text-muted"
-        *ngIf="manageCountryForm.get('continent')?.errors?.['required']"
-      >
-        Continent is required
-      </small>
-      <small
-        class="form-text text-muted"
-        *ngIf="(manageCountryForm.get('continent')?.errors?.['minlength']||manageCountryForm.get('continent')?.errors?.['maxlength'])"
-      >
-        Continent length must be between 4 and 15
-      </small>
-      <small
-        class="form-text text-muted"
-        *ngIf="(manageCountryForm.get('continent')?.errors?.['pattern'])"
-      >
-        Only ltters are acceptable please
-      </small>
-    </span>
+    <select class="form-select form-control mt-1" formControlName="continent">
+      <option *ngFor="let continent of continentList" [value]="continent">
+        {{ continent }}
+      </option>
+    </select>
   </div>
   <div class="form-group mt-2">
     <label for="description">Description</label>
