@@ -78,21 +78,7 @@ export class ManageCountryComponent {
   search: OperatorFunction<string, readonly string[]> = (
     text$: Observable<string>
   ) => {
-    let countries: string[] = [];
-    return text$.pipe(
-      map((term) => {
-        if (term === '') {
-          return countries;
-        } else {
-          this.countryService
-            .getCountryByName(term)
-            .subscribe((data: string[]) => {
-              countries = data;
-            });
-          return countries;
-        }
-      })
-    );
+    return this.countryService.search(text$);
   };
 
   ngOnDestroy(): void {

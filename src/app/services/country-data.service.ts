@@ -2,9 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Observable,
-  OperatorFunction,
   debounceTime,
   distinctUntilChanged,
+  distinctUntilKeyChanged,
   first,
   map,
 } from 'rxjs';
@@ -53,9 +53,25 @@ export class CountryDataService {
   getCountryByName(term: string) {
     const countryApiUrl = `https://autocomplete.travelpayouts.com/places2?term=${term}&locale=en&types[]=country`;
     return this.http.get<any[]>(countryApiUrl).pipe(
-      distinctUntilChanged(),
+      first(),
       debounceTime(200),
       map((data: any) => [...data.map((v: any) => v.name)])
+    );
+  }
+
+  search(text$: Observable<string>) {
+    let countries: string[] = [];
+    return text$.pipe(
+      map((term) => {
+        if (term === '') {
+          return countries;
+        } else {
+          this.getCountryByName(term).subscribe((data: string[]) => {
+            countries = data;
+          });
+          return countries;
+        }
+      })
     );
   }
 }
