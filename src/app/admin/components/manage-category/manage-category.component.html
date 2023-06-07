@@ -41,7 +41,7 @@
   <button
     type="submit"
     class="btn btn-primary mt-3"
-    [disabled]="manageCategoryForm.invalid"
+    [disabled]="manageCategoryForm.invalid || requestState.waiting"
   >
     <ng-content select="[btn-label]"></ng-content>
   </button>
