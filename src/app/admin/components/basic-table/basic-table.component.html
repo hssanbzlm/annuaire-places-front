@@ -13,21 +13,23 @@
             {{ item.value | displayObject }}
           </td>
         </ng-container>
-        <td class="d-flex justify-content-center">
-          <button
-            type="button"
-            class="btn btn-outline-primary me-1"
-            (click)="onUpdate(data)"
-          >
-            Update
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-danger"
-            (click)="onRemove(data)"
-          >
-            Remove
-          </button>
+        <td>
+          <div class="d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn btn-outline-primary me-1"
+              (click)="onUpdate(data)"
+            >
+              Update
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="onRemove(data)"
+            >
+              Remove
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
