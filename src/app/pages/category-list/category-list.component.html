@@ -1,7 +1,5 @@
 <ng-container *ngIf="requestState.waiting; else categoriesTemplate">
-  <div class="categories-container">
-    <app-base-spinner [spinnerType]="'text-secondary'" />
-  </div>
+  <app-base-spinner [spinnerType]="'text-secondary'" />
 </ng-container>
 <ng-template #categoriesTemplate>
   <div
@@ -13,7 +11,6 @@
       [itemsPerSlide]="itemsPerSlide"
       [singleSlideOffset]="singleSlideOffset"
       [interval]="0"
-      class="tt"
     >
       <slide *ngFor="let category of categoryList" class="slider">
         <div class="category-list-container">
