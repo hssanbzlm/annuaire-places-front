@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { CountryListComponent } from './pages/country-list/country-list.component';
 import { LatestListingComponent } from './pages/latest-listing/latest-listing.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
@@ -27,6 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CountriesEffects } from './Store/country/countries.effects';
 import { PlacesEffects } from './Store/place/places.effetcts';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     NgbModule,
     AppRoutingModule,
     AdminModule,
+    SharedModule,
     HttpClientModule,
     CarouselModule.forRoot(),
     StoreModule.forRoot(reducers),
