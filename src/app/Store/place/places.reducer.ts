@@ -18,6 +18,16 @@ const initialPlacesState: PlacesListShape = {
 
 export const placesReducer = createReducer(
   initialPlacesState,
+  on(PlacesActionsTypes.loadPlaces, (state) => ({
+    ...state,
+    error: null,
+    waiting: true,
+  })),
+  on(PlacesActionsTypes.loadPlaces, (state) => ({
+    ...state,
+    error: null,
+    waiting: true,
+  })),
   on(PlacesActionsTypes.placesLoaded, (state, { places }) => ({
     error: null,
     waiting: false,

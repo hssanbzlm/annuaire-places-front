@@ -23,7 +23,13 @@ export class PlacesEffects {
               type: '[Places] Places loaded',
               places: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Places] Place error',
+              payload: 'error while loading places',
+            })
+          )
         );
       })
     );

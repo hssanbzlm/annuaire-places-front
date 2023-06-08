@@ -4,17 +4,23 @@
     <p class="subtitle">Latest listings</p>
     <p class="secondary-color">Pick up one of the latest added places</p>
   </div>
-  <div *ngIf="places$ | async as places">
-    <carousel
-      *ngIf="places.length"
-      [itemsPerSlide]="itemsPerSlide"
-      [singleSlideOffset]="singleSlideOffset"
-      [interval]="0"
-      class="container"
-    >
-      <slide *ngFor="let item of places" class="row">
-        <app-listing-card [place]="item" />
-      </slide>
-    </carousel>
-  </div>
+
+  <ng-container *ngIf="requestState.waiting; else placesTemplate">
+    <app-base-spinner [spinnerType]="'text-secondary'" />
+  </ng-container>
+  <ng-template #placesTemplate>
+    <div *ngIf="places$ | async as places">
+      <carousel
+        *ngIf="places.length"
+        [itemsPerSlide]="itemsPerSlide"
+        [singleSlideOffset]="singleSlideOffset"
+        [interval]="0"
+        class="container"
+      >
+        <slide *ngFor="let item of places" class="row">
+          <app-listing-card [place]="item" />
+        </slide>
+      </carousel>
+    </div>
+  </ng-template>
 </div>

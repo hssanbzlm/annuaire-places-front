@@ -14,6 +14,11 @@ const initialCountriesState: CountriesListShape = {
 };
 export const countriesReducer = createReducer(
   initialCountriesState,
+  on(CountriesActionsTypes.loadCountries, (state) => ({
+    ...state,
+    error: null,
+    waiting: true,
+  })),
   on(CountriesActionsTypes.countriesLoaded, (state, { countries }) => ({
     error: null,
     waiting: false,

@@ -16,6 +16,11 @@ const initialCategoriesState: CategoriesStateShape = {
 
 export const categoriesReducer = createReducer(
   initialCategoriesState,
+  on(CategoriesActionsTypes.loadCategories, (state) => ({
+    ...state,
+    error: null,
+    waiting: true,
+  })),
   on(CategoriesActionsTypes.categoriesLoaded, (state, { categories }) => ({
     error: null,
     waiting: false,

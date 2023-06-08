@@ -1,15 +1,25 @@
-<div class="categories-container" *ngIf="categoryList$ | async as categoryList">
-  <carousel
-    *ngIf="categoryList.length"
-    [itemsPerSlide]="itemsPerSlide"
-    [singleSlideOffset]="singleSlideOffset"
-    [interval]="0"
-    class="tt"
+<ng-container *ngIf="requestState.waiting; else categoriesTemplate">
+  <div class="categories-container">
+    <app-base-spinner [spinnerType]="'text-secondary'" />
+  </div>
+</ng-container>
+<ng-template #categoriesTemplate>
+  <div
+    class="categories-container"
+    *ngIf="categoryList$ | async as categoryList"
   >
-    <slide *ngFor="let category of categoryList" class="slider">
-      <div class="category-list-container">
-        <app-category-card [category]="category" />
-      </div>
-    </slide>
-  </carousel>
-</div>
+    <carousel
+      *ngIf="categoryList.length"
+      [itemsPerSlide]="itemsPerSlide"
+      [singleSlideOffset]="singleSlideOffset"
+      [interval]="0"
+      class="tt"
+    >
+      <slide *ngFor="let category of categoryList" class="slider">
+        <div class="category-list-container">
+          <app-category-card [category]="category" />
+        </div>
+      </slide>
+    </carousel>
+  </div>
+</ng-template>

@@ -23,7 +23,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { StatisticCardComponent } from './components/statistic-card/statistic-card.component';
 import { BaseChartComponent } from './components/base-chart/base-chart.component';
 import { BasicCardComponent } from './components/basic-card/basic-card.component';
-import { BaseSpinnerComponent } from './components/base-spinner/base-spinner.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,6 @@ import { BaseSpinnerComponent } from './components/base-spinner/base-spinner.com
     StatisticCardComponent,
     BaseChartComponent,
     BasicCardComponent,
-    BaseSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +52,7 @@ import { BaseSpinnerComponent } from './components/base-spinner/base-spinner.com
     ReactiveFormsModule,
     NgbTypeaheadModule,
     NgChartsModule,
+    SharedModule,
   ],
 })
 export class AdminModule {}

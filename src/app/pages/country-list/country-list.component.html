@@ -6,17 +6,22 @@
       You find here the best places around the world
     </p>
   </div>
-  <div *ngIf="listingParCountry$ | async as listings">
-    <carousel
-      *ngIf="listings.length"
-      [itemsPerSlide]="itemsPerSlide"
-      [singleSlideOffset]="singleSlideOffset"
-      [interval]="0"
-      class="container"
-    >
-      <slide *ngFor="let item of listings" class="row">
-        <app-country-card [listingsParCountry]="item" />
-      </slide>
-    </carousel>
-  </div>
+  <ng-container *ngIf="requestState.waiting; else countriesTemplate">
+    <app-base-spinner [spinnerType]="'text-secondary'" />
+  </ng-container>
+  <ng-template #countriesTemplate>
+    <div *ngIf="listingParCountry$ | async as listings">
+      <carousel
+        *ngIf="listings.length"
+        [itemsPerSlide]="itemsPerSlide"
+        [singleSlideOffset]="singleSlideOffset"
+        [interval]="0"
+        class="container"
+      >
+        <slide *ngFor="let item of listings" class="row">
+          <app-country-card [listingsParCountry]="item" />
+        </slide>
+      </carousel>
+    </div>
+  </ng-template>
 </div>

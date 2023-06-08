@@ -23,7 +23,13 @@ export class CountriesEffects {
               type: '[Countries] Countries loaded',
               countries: data,
             };
-          })
+          }),
+          catchError(() =>
+            of({
+              type: '[Countries] Country error',
+              payload: 'Error while loading countries',
+            })
+          )
         );
       })
     );
