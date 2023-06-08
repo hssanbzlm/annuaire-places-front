@@ -4,7 +4,6 @@
     border-radius: 5px;
     padding: 10px;
     border: 1px solid rgb(207, 206, 206,0.3);
-
 }
 
 
@@ -29,6 +28,7 @@
 .listing-card-description{
     font-size: 10px;
     overflow-wrap: break-word;
+    width: 100%;
 }
 
 .listing-card-location{
@@ -55,7 +55,7 @@
 }
 
 
-@media only screen and (max-width: 970px) {
+@media only screen and (max-width: 768px) {
     .listing-card-container{
         width: 120px;
     }
