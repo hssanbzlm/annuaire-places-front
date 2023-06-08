@@ -17,7 +17,9 @@
  height: 60%;
  display: flex;
  flex-direction: column;
- padding:25px;
+ align-items: start;
+ margin-top: 10px;
+ margin-left: 5px;
  box-sizing:border-box;
 }
 .listing-card-name{
