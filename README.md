@@ -1,27 +1,38 @@
-# AnnuairePlaces
+![image](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![image](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![image](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![image](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![image](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+# AnnuairePlaces (Global business directory)
 
-## Development server
+This application is designed to be a hub of global business information, offering users a centralized platform to explore and connect with businesses worldwide. Every component of this application has been crafted with user needs in mind, creating a seamless browsing and interaction experience.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Home Page
+The application's home page sets the stage for exploration with a static yet inviting navigation bar and search bar. Behind the scenes, data flows dynamically from the database, ensuring that users receive the latest and most accurate information about categories, places and countries.
 
-## Build
+### Administrator controls 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The application's backbone features a robust admin panel. Administrators have the power to effortlessly add, remove, and update places, countries, and categories of places. This administrative control ensures that the directory is current and comprehensive.
 
-## Running unit tests
+### Data visualization 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Empowering administrators with insights, the application integrates interactive charts and visualizations. These tools transform raw data into meaningful insights, enabling administrators to make informed decisions and recognize trends at a glance.
 
-## Running end-to-end tests
+## Screenshots
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Home page
+![home](https://github.com/hssanbzlm/annuaire-places-front/assets/48295114/2f7400e8-292b-47c0-93f4-b431df60b497)
+![home-1](https://github.com/hssanbzlm/annuaire-places-front/assets/48295114/2ad5e3eb-fa70-4a2b-97dc-4d59acd917ae)
+### Admin login
+![admin-login](https://github.com/hssanbzlm/annuaire-places-front/assets/48295114/5fec9746-c21f-4355-922c-3bc98f94b057)
+### Admin dashboard
+![admin-home](https://github.com/hssanbzlm/annuaire-places-front/assets/48295114/53c25253-36c5-4094-be4b-a17d6c60f5d5)
+### Admin manage countries
+![admin-manage-countries](https://github.com/hssanbzlm/annuaire-places-front/assets/48295114/8eb150fb-eb88-487e-8433-ee172baa4599)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Backend directory: https://github.com/hssanbzlm/annuaire-places-back
