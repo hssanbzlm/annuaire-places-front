@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CountryListComponent } from './pages/country-list/country-list.component';
 import { LatestListingComponent } from './pages/latest-listing/latest-listing.component';
@@ -32,7 +31,6 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     CountryListComponent,
     LatestListingComponent,
