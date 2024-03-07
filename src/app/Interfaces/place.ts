@@ -10,4 +10,5 @@ export interface Place {
   description: string;
   phone: string;
   dateAdded: string;
+  images: string[];
 }

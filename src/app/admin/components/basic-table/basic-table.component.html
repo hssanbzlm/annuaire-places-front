@@ -9,7 +9,11 @@
     <tbody *ngIf="tableData">
       <tr *ngFor="let data of tableData">
         <ng-container *ngFor="let item of data | keyvalue : asIsOrder">
-          <td *ngIf="item.key != '_id' && item.key != '__v'">
+          <td
+            *ngIf="
+              item.key != '_id' && item.key != '__v' && item.key != 'images'
+            "
+          >
             {{ item.value | displayObject }}
           </td>
         </ng-container>
