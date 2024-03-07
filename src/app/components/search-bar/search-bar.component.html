@@ -5,20 +5,24 @@
       type="text"
       class="search-preferences attribute-appearence secondary-color secondary-border"
     />
-    <select
-      class="search-location attribute-appearence secondary-color secondary-border"
-    >
-      <option value="" disabled selected>Location</option>
-      <option value="//">//</option>
-      <option value="//">//</option>
-    </select>
-    <select
-      class="search-categories attribute-appearence secondary-color secondary-border"
-    >
-      <option value="" disabled selected>All categories</option>
-      <option value="//">//</option>
-      <option value="//">//</option>
-    </select>
+    <div *ngIf="countries$ | async as countryList">
+      <select
+        class="search-location attribute-appearence secondary-color secondary-border"
+      >
+        <option *ngFor="let country of countryList" [value]="country">
+          {{ country }}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="categories$ | async as categoryList">
+      <select
+        class="search-categories attribute-appearence secondary-color secondary-border"
+      >
+        <option *ngFor="let category of categoryList" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
   </div>
   <button class="search-btn main-background-color">
     <fa-icon
