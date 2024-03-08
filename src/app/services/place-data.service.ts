@@ -23,10 +23,10 @@ export class PlaceDataService {
     country: string,
     description: string,
     category: string
-  ): Observable<{ data: Place[] }> {
+  ): Observable<Place[]> {
     const header = this.createHeader();
     return this.http
-      .get<{ data: Place[] }>(
+      .get<Place[]>(
         `${this.url}/search?country=${country}&category=${category}&description=${description}`,
         { headers: header }
       )

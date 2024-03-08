@@ -4,10 +4,12 @@
       placeholder="What are you looking for"
       type="text"
       class="search-preferences attribute-appearence secondary-color secondary-border"
+      [(ngModel)]="description"
     />
     <div *ngIf="countries$ | async as countryList">
       <select
         class="search-location attribute-appearence secondary-color secondary-border"
+        [(ngModel)]="selectedCountry"
       >
         <option *ngFor="let country of countryList" [value]="country">
           {{ country }}
@@ -17,6 +19,7 @@
     <div *ngIf="categories$ | async as categoryList">
       <select
         class="search-categories attribute-appearence secondary-color secondary-border"
+        [(ngModel)]="selectedCategory"
       >
         <option *ngFor="let category of categoryList" [value]="category">
           {{ category }}
@@ -24,7 +27,7 @@
       </select>
     </div>
   </div>
-  <button class="search-btn main-background-color">
+  <button (click)="search()" class="search-btn main-background-color">
     <fa-icon
       [icon]="faMagnifyingGlass"
       class="fa-xs"
@@ -32,4 +35,14 @@
     ></fa-icon>
     Search
   </button>
+
+  <ng-template #searchResultModal>
+    <app-basic-modal (closeEvent)="closeModal()">
+      <span title> Places... </span>
+      <div *ngIf="placesResult$ | async as placesResult; else waiting">
+        <app-place-result [placeList]="placesResult"></app-place-result>
+      </div>
+      <ng-template #waiting> waiting ... </ng-template>
+    </app-basic-modal>
+  </ng-template>
 </div>

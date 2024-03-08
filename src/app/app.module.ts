@@ -27,6 +27,8 @@ import { CountriesEffects } from './Store/country/countries.effects';
 import { PlacesEffects } from './Store/place/places.effetcts';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { PlaceResultComponent } from './components/place-result/place-result.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { SharedModule } from './shared/shared.module';
     CategoryListComponent,
     HomeComponent,
     NotFoundComponent,
+    PlaceResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { SharedModule } from './shared/shared.module';
     AdminModule,
     SharedModule,
     HttpClientModule,
+    FormsModule,
     CarouselModule.forRoot(),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([CategoriesEffects, CountriesEffects, PlacesEffects]),
