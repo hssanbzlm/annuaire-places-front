@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
+import { BasicModalComponent } from '../../../shared/components/basic-modal/basic-modal.component';
 import { Place } from 'src/app/Interfaces/place';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';

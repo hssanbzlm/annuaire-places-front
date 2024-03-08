@@ -1,6 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { BasicModalComponent } from '../../components/basic-modal/basic-modal.component';
+import { BasicModalComponent } from '../../../shared/components/basic-modal/basic-modal.component';
+
 import { Category } from 'src/app/Interfaces/category';
 import { Store, select } from '@ngrx/store';
 import * as CategoriesActionsTypes from '../../../Store/category/categories.actions';
