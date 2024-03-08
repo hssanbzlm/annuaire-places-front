@@ -9,7 +9,6 @@ import { CountriesComponent } from './pages/countries/countries.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { PlacesComponent } from './pages/places/places.component';
 import { BasicTableComponent } from './components/basic-table/basic-table.component';
-import { BasicModalComponent } from './components/basic-modal/basic-modal.component';
 import { ManageCategoryComponent } from './components/manage-category/manage-category.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +32,6 @@ import { SharedModule } from '../shared/shared.module';
     CategoriesComponent,
     PlacesComponent,
     BasicTableComponent,
-    BasicModalComponent,
     ManageCategoryComponent,
     ManageCountryComponent,
     ManagePlaceComponent,
