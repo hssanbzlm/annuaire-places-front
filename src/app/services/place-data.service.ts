@@ -19,6 +19,19 @@ export class PlaceDataService {
   getPlaces(): Observable<{ data: Place[] }> {
     return this.http.get<{ data: Place[] }>(this.url).pipe(first());
   }
+  getPlacesByCriteria(
+    country: string,
+    description: string,
+    category: string
+  ): Observable<{ data: Place[] }> {
+    const header = this.createHeader();
+    return this.http
+      .get<{ data: Place[] }>(
+        `${this.url}/search?country=${country}&category=${category}&description=${description}`,
+        { headers: header }
+      )
+      .pipe(first());
+  }
 
   addPlace(place: Place): Observable<{ data: Place }> {
     const header = this.createHeader();
