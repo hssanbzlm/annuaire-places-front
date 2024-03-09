@@ -9,42 +9,36 @@ import { Observable, first } from 'rxjs';
 })
 export class CategoryDataService {
   private url = `${environment.baseUrl}/category`;
-
+  private headers = new HttpHeaders().set(
+    'Authorization',
+    `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
+  );
   constructor(private http: HttpClient) {}
-  private createHeader() {
-    return new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
-    );
-  }
+
   getCategories(): Observable<{ data: Category[] }> {
     return this.http.get<{ data: Category[] }>(this.url).pipe(first());
   }
 
   addCategory(category: Category): Observable<{ data: Category }> {
-    const header = this.createHeader();
     return this.http
       .post<{ data: Category }>(`${this.url}/add`, category, {
-        headers: header,
+        headers: this.headers,
       })
       .pipe(first());
   }
 
   updateCategory(category: Category): Observable<{ data: Category }> {
-    const header = this.createHeader();
     return this.http
       .put<{ data: Category }>(`${this.url}/update`, category, {
-        headers: header,
+        headers: this.headers,
       })
       .pipe(first());
   }
 
   removeCategory(category: Category): Observable<{ data: Category }> {
-    const header = this.createHeader();
-
     return this.http
       .delete<{ data: Category }>(`${this.url}/remove`, {
-        headers: header,
+        headers: this.headers,
         body: category,
       })
       .pipe(first());

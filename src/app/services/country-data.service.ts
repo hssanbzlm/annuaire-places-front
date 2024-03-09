@@ -9,43 +9,36 @@ import { Country } from '../Interfaces/country';
 })
 export class CountryDataService {
   private url = `${environment.baseUrl}/country`;
+  private headers = new HttpHeaders().set(
+    'Authorization',
+    `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
+  );
   constructor(private http: HttpClient) {}
 
-  private createHeader() {
-    return new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${localStorage.getItem('jwt-annuaire-places')}`
-    );
-  }
   getCountries(): Observable<{ data: Country[] }> {
     return this.http.get<{ data: Country[] }>(this.url).pipe(first());
   }
 
   addCountry(country: Country): Observable<{ data: Country }> {
-    const header = this.createHeader();
     return this.http
       .post<{ data: Country }>(`${this.url}/add`, country, {
-        headers: header,
+        headers: this.headers,
       })
       .pipe(first());
   }
 
   updateCountry(country: Country): Observable<{ data: Country }> {
-    const header = this.createHeader();
-
     return this.http
       .put<{ data: Country }>(`${this.url}/update`, country, {
-        headers: header,
+        headers: this.headers,
       })
       .pipe(first());
   }
 
   removeCountry(country: Country): Observable<{ data: Country }> {
-    const header = this.createHeader();
-
     return this.http
       .delete<{ data: Country }>(`${this.url}/remove`, {
-        headers: header,
+        headers: this.headers,
         body: country,
       })
       .pipe(first());
