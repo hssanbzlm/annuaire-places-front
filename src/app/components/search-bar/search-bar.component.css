@@ -1,18 +1,15 @@
 .search-bar-container{
     height: 90%;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 .input-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 70%;
 }
+
 .attribute-appearence{
     height: 50px;
-    width: 300px;
+    width: 200px;
     font-size: 14px;
     padding: 8px;
 
@@ -46,11 +43,10 @@
     .search-bar-container{
         flex-direction: column;
         gap: 5px;
-
     }
-}
-
-@media only screen and (max-width: 400px) {
+    .inputs{
+        flex-direction: column;
+    }
     .input-container{
         flex-direction: column;
         align-items: center;

@@ -58,6 +58,7 @@
 @media only screen and (max-width: 768px) {
     .listing-card-container{
         width: 120px;
+        padding: 5px;
     }
 }
 

@@ -1,5 +1,5 @@
-<div class="search-bar-container">
-  <div class="input-container">
+<div class="search-bar-container d-flex">
+  <div class="inputs d-flex">
     <input
       placeholder="What are you looking for"
       type="text"
@@ -27,14 +27,16 @@
       </select>
     </div>
   </div>
-  <button (click)="search()" class="search-btn main-background-color">
-    <fa-icon
-      [icon]="faMagnifyingGlass"
-      class="fa-xs"
-      style="color: white"
-    ></fa-icon>
-    Search
-  </button>
+  <div class="btn-container">
+    <button (click)="search()" class="search-btn main-background-color">
+      <fa-icon
+        [icon]="faMagnifyingGlass"
+        class="fa-xs"
+        style="color: white"
+      ></fa-icon>
+      Search
+    </button>
+  </div>
 
   <ng-template #searchResultModal>
     <app-basic-modal (closeEvent)="closeModal()">
