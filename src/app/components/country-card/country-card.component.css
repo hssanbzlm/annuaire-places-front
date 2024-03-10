@@ -1,7 +1,7 @@
 .country-card-container{
     width: 200px;
     height: 280px;
-    background-image: url('../../../assets/London_Big_Ben_Phone_box.jpg');
+    background-image: url('https://res.cloudinary.com/dodm50cbx/image/upload/v1710060992/annuaire-places/kidhkmcp8ab7q2isarnz.jpg');
     border-radius: 10px;
     padding-top: 5px;
 }
