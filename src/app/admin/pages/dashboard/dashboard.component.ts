@@ -14,10 +14,7 @@ import {
 } from 'src/app/Store/place/places.selectors';
 
 import { numberOfCountries } from 'src/app/Store/country/countries.selectors';
-import {
-  pieChartDataType,
-  radarChartDataType,
-} from '../../../Interfaces/chart';
+import { pieChartDataType, radarChartDataType } from 'src/app/Interfaces/chart';
 
 @Component({
   selector: 'app-dashboard',

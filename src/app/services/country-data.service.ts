@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, debounceTime, first, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Country } from '../Interfaces/country';
+import { Country } from 'src/app/Interfaces/country';
 
 @Injectable({
   providedIn: 'root',

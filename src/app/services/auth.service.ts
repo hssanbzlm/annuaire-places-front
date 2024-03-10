@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../Interfaces/user';
+import { User } from 'src/app/Interfaces/user';
 import { Router } from '@angular/router';
 
 @Injectable({

@@ -11,7 +11,7 @@ import {
   selectPlacesRequestState,
 } from 'src/app/Store/place/places.selectors';
 import { selectCountriesName } from 'src/app/Store/country/countries.selectors';
-import * as PlacesActionsTypes from '../../../Store/place/places.actions';
+import * as PlacesActionsTypes from 'src/app/Store/place/places.actions';
 
 @Component({
   selector: 'app-places',

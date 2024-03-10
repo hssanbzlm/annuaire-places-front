@@ -2,8 +2,8 @@ import {
   ListingsParCountry,
   pieChartDataType,
   radarChartDataType,
-} from '../Interfaces/chart';
-import { AppState } from '../Store';
+} from 'src/app/Interfaces/chart';
+import { AppState } from 'src/app/Store';
 
 export const numberOfCategoriesParCountry = (state: AppState) => {
   let result: radarChartDataType = {
