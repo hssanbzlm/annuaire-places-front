@@ -21,4 +21,12 @@ export class ListingCardComponent {
   faUserTie = faUserTie;
 
   @Input() place!: Place;
+
+  getBackGround() {
+    return `background: url(${
+      this.place.images[0]
+        ? this.place.images[0]
+        : 'https://res.cloudinary.com/dodm50cbx/image/upload/v1710060991/annuaire-places/iel3ff1cjvexacoy40ff.jpg'
+    })`;
+  }
 }
