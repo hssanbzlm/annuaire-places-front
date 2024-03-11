@@ -34,24 +34,6 @@
     margin-top: 20px;
 }
 
-.listing-card-icons{
-    margin-left: 10px;
-    display: flex;
-    gap: 5px;
-    position:relative;
-    top: 95px;
-}
-
-.listing-card-owner,.listing-card-category{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-   
-}
 
 
 @media only screen and (max-width: 768px) {
