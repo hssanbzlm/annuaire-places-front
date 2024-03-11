@@ -18,6 +18,7 @@ export class ManagePlaceComponent {
   managePlaceForm!: FormGroup;
   submitted = false;
   formChangesSub!: Subscription;
+  photos: FileList | null = null;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -55,6 +56,10 @@ export class ManagePlaceComponent {
       phone: [this.updatedPlace.phone, [Validators.required]],
     });
   }
+  onFileChanges(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.photos = target.files!;
+  }
   onSubmit() {
     if (this.managePlaceForm.invalid) {
       return;
@@ -65,7 +70,15 @@ export class ManagePlaceComponent {
             _id: this.updatedPlace._id,
           }
         : this.managePlaceForm.value;
-      this.managePlaceEvent.emit(placeValue);
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(placeValue)) {
+        formData.set(key, value as string);
+      }
+      if (this.photos) {
+        for (let i = 0; i < this.photos.length; i++)
+          formData.append('photos', this.photos[i]);
+      }
+      this.managePlaceEvent.emit(formData);
       this.submitted = true;
     }
   }

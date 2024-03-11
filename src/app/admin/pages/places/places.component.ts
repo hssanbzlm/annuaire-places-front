@@ -67,7 +67,7 @@ export class PlacesComponent {
     this.place = data;
   }
 
-  handleAddPlace(data: Place) {
+  handleAddPlace(data: FormData) {
     this.submitted = true;
     this.store.dispatch(PlacesActionsTypes.addPlace({ place: data }));
   }
@@ -76,7 +76,7 @@ export class PlacesComponent {
     this.store.dispatch(PlacesActionsTypes.removePlace({ place: this.place }));
   }
 
-  handleUpdatePlace(place: Place) {
+  handleUpdatePlace(place: FormData) {
     this.submitted = true;
     this.store.dispatch(PlacesActionsTypes.updatePlace({ place: place }));
   }

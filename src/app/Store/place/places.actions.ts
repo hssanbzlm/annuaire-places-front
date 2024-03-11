@@ -8,7 +8,7 @@ export const placesLoaded = createAction(
 );
 export const updatePlace = createAction(
   '[Places] Update place',
-  props<{ place: Place }>()
+  props<{ place: FormData }>()
 );
 
 export const placeUpdated = createAction(
@@ -25,7 +25,7 @@ export const placeRemoved = createAction(
 );
 export const addPlace = createAction(
   '[Places] Add place',
-  props<{ place: Place }>()
+  props<{ place: FormData }>()
 );
 
 export const placeAdded = createAction(

@@ -113,6 +113,17 @@
       </small>
     </span>
   </div>
+
+  <input
+    type="file"
+    class="form-control"
+    name="photos"
+    (change)="onFileChanges($event)"
+    placeholder="Upload Image"
+    accept="image/*"
+    multiple
+  />
+
   <div *ngIf="submitted">
     <span *ngIf="requestState?.error" class="text-danger">
       {{ requestState.error }}

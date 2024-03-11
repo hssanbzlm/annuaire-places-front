@@ -30,7 +30,7 @@ export class PlaceDataService {
       .pipe(first());
   }
 
-  addPlace(place: Place): Observable<{ data: Place }> {
+  addPlace(place: FormData): Observable<{ data: Place }> {
     return this.http
       .post<{ data: Place }>(`${this.url}/add`, place, {
         headers: this.headers,
@@ -45,7 +45,7 @@ export class PlaceDataService {
       })
       .pipe(first());
   }
-  updatePlace(place: Place): Observable<{ data: Place }> {
+  updatePlace(place: FormData): Observable<{ data: Place }> {
     return this.http
       .put<{ data: Place }>(`${this.url}/update`, place, {
         headers: this.headers,
